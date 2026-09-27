@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>العيادة الذكية | مركز القيادة الطبي السحابي</title>
+  
+  <!-- خط Cairo الرسمي -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ضمان اللون الداكن والتجاوب عبر CSS مباشر حتى قبل اكتمال سكريبت Tailwind -->
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      background-color: #060913 !important;
+      color: #f1f5f9 !important;
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    /* شبكة نيون خفيفة وفخمة */
+    .bg-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    }
+    .ambient-glow {
+      background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.18), transparent 50%),
+                  radial-gradient(circle at 85% 60%, rgba(16, 185, 129, 0.12), transparent 40%),
+                  radial-gradient(circle at 15% 80%, rgba(99, 102, 241, 0.12), transparent 45%);
+    }
+    .card-glass {
+      background-color: #0b1220 !important;
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      border-radius: 1.25rem;
+    }
+    .card-glass:hover {
+      border-color: rgba(6, 182, 212, 0.6);
+      box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.3);
+    }
+    .screen-container {
+      background: #080e1a;
+      border: 1px solid #1e293b;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    /* شريط التمرير */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060913;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06b6d4;
+    }
+  </style>
+</head>
+<body class="bg-grid ambient-glow min-h-screen">
+
+  <header class="sticky top-0 z-50 bg-[#060913]/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-18 py-3 flex items-center justify-between">
+      
+      <!-- اللوجو -->
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-teal-400 p-0.5 shadow-lg shadow-cyan-500/20">
+          <div class="w-full h-full bg-[#09101d] rounded-[10px] flex items-center justify-center text-cyan-400">
+            <i class="fa-solid fa-hospital-user text-lg"></i>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-base sm:text-lg font-black text-white">العيادة الذكية</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-bold">Cloud SaaS</span>
+          </div>
+          <span class="text-[10px] text-slate-400 block -mt-0.5">مركز القيادة الطبي السحابي</span>
+        </div>
+      </a>
+
+      <!-- أزرار الاتصال السريعة في الهيدر -->
+      <div class="flex items-center gap-2">
+        <a href="https://wa.me/201131327616?text=مرحباً،%20أرغب%20في%20طلب%20عرض%20توضيحي%20لمنظومة%20العيادة%20الذكية" target="_blank"
+           class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm shadow-lg shadow-emerald-500/20 transition transform active:scale-95">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span dir="ltr" class="font-mono font-bold">01131327616</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <section class="pt-8 pb-16 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      
+      <!-- شارة الحالة -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-bold mb-6">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span>منظومة الحوسبة السحابية المتكاملة للمراكز والعيادات</span>
+      </div>
+
+      <!-- العنوان الرئيسي المتجاوب بالكامل لمنع التداخل والقطع -->
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
+        العيادة الذكية: <br/>
+        <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
+          مركز القيادة الطبي السحابي
+        </span>
+      </h1>
+
+      <p class="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 font-normal">
+        تحول رقمي شامل يمنحك <span class="text-cyan-400 font-bold">تحكماً مطلقاً</span>، 
+        <span class="text-emerald-400 font-bold">أماناً تاماً</span>، 
+        ووقتاً أكثر لرعاية مرضاك بدلاً من الغرق في فوضى الدفاتر والكراكيب.
+      </p>
+
+      <!-- أزرار الإجراءات الرئيسية -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+        <a href="https://wa.me/201131327616?text=مرحباً،%20أريد%20معرفة%20تفاصيل%20الاشتراك%20في%20منظومة%20العيادة%20الذكية" target="_blank"
+           class="w-full sm:w-auto flex-1 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm shadow-xl shadow-emerald-500/25 transition">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          <span>تواصل واتساب: 01131327616</span>
+        </a>
+        <a href="#screens-preview" 
+           class="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition">
+          <i class="fa-solid fa-mobile-screen-button text-cyan-400"></i>
+          <span>معاينة شاشات النظام</span>
+        </a>
+      </div>
+
+      <!-- إحصائيات سريعة في صناديق واضحة -->
+      <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        <div class="card-glass p-3">
+          <div class="text-xl sm:text-2xl font-black text-cyan-400 font-mono">100%</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">سحابي بدون سيرفرات</div>
+        </div>
+        <div class="card-glass p-3">
+          <div class="text-xl sm:text-2xl font-black text-emerald-400 font-mono">0 ثانية</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">تأخير في مزامنة QR</div>
+        </div>
+        <div class="card-glass p-3">
+          <div class="text-xl sm:text-2xl font-black text-amber-400 font-mono">0 تعارض</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">في المواعيد والغرف</div>
+        </div>
+        <div class="card-glass p-3">
+          <div class="text-xl sm:text-2xl font-black text-purple-400 font-mono">24/7</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">دعم فني وتحديثات</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="video-section" class="py-12 bg-[#09101c] border-y border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-bold border border-emerald-500/30 mb-3">
+        <i class="fa-solid fa-circle-play"></i>
+        <span>الفيديو التعريفي الرسمي (35 ثانية)</span>
+      </div>
+      <h2 class="text-xl sm:text-3xl font-black text-white mb-2">شاهد كيف تعمل منظومة "العيادة الذكية"</h2>
+      <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto mb-6">
+        شرح صوتي ومرئي يوضح نقل عيادتك بالكامل من فوضى الدفاتر إلى التحكم السحابي والأمان التام.
+      </p>
+
+      <!-- مشغل الفيديو -->
+      <div class="relative card-glass p-2 sm:p-4 max-w-3xl mx-auto shadow-2xl">
+        <div class="relative rounded-xl overflow-hidden bg-black aspect-video flex items-center justify-center">
+          <video id="promo-video" 
+                 class="w-full h-full object-cover" 
+                 controls 
+                 preload="metadata" 
+                 playsinline>
+            <source src="منظومة العيادة الذكية 1.mp4" type="video/mp4">
+            <source src="video.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+          </video>
+        </div>
+        
+        <!-- مزايا الفيديو الملخصة -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3 text-[11px] font-semibold text-slate-300">
+          <div class="bg-[#0e1728] p-2 rounded-lg border border-slate-800 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-bolt text-cyan-400"></i> إلغاء فوري لطوابير الانتظار
+          </div>
+          <div class="bg-[#0e1728] p-2 rounded-lg border border-slate-800 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-shield-halved text-emerald-400"></i> أمان وصلاحيات دقيقة
+          </div>
+          <div class="bg-[#0e1728] p-2 rounded-lg border border-slate-800 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-chart-line text-amber-400"></i> تقارير ومضاعفة للأرباح
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="screens-preview" class="py-14 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-cyan-400 text-xs font-black uppercase tracking-wider block mb-1">واجهات النظام الفعلية</span>
+        <h2 class="text-xl sm:text-3xl font-black text-white">استكشف الشاشات الأربع الرئيسية</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2">
+          محاكاة دقيقة وتفاعلية لشاشات نظامك الليلي المصمم لراحة العين وسرعة الإنجاز.
+        </p>
+      </div>
+
+      <!-- شبكة الشاشات الأربع -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <!-- الشاشة 1: تتبع الجلسات والباقات -->
+        <div class="card-glass p-3 flex flex-col">
+          <div class="screen-container p-2.5 flex flex-col justify-between mb-3 text-xs min-h-[380px] bg-[#09111e] border-cyan-500/30">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+              <div class="flex items-center gap-1.5 text-cyan-400 font-bold text-[11px]">
+                <i class="fa-solid fa-heart-pulse"></i> مركز العيادة
+              </div>
+              <span class="text-[9px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded-full border border-cyan-500/20">فرع الدقي الرئيسي</span>
+            </div>
+            
+            <!-- Content -->
+            <div class="my-2 space-y-2">
+              <div class="text-amber-400 font-bold text-[11px] flex items-center gap-1">
+                <i class="fa-solid fa-bolt text-[10px]"></i> منظومة تتبع ومتابعة الجلسات
+              </div>
+              
+              <!-- Patient 1 Card -->
+              <div class="bg-[#101b2d] p-2.5 rounded-xl border border-cyan-500/30">
+                <div class="flex justify-between items-center text-[11px] font-bold text-white mb-1">
+                  <span>كابتن / أحمد محمود الشناوي</span>
+                  <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">نشطة</span>
+                </div>
+                <div class="text-[10px] text-slate-400">باقة استشفاء رياضي كامل (6 جلسات)</div>
+                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
+                  <div class="bg-cyan-400 h-full w-1/2"></div>
+                </div>
+                <div class="flex justify-between text-[9px] mt-1 text-cyan-300 font-bold">
+                  <span>المنفذ: 3</span>
+                  <span>المتبقي: 3 جلسات</span>
+                </div>
+              </div>
+
+              <!-- Patient 2 Card -->
+              <div class="bg-[#101b2d] p-2.5 rounded-xl border border-cyan-500/30">
+                <div class="flex justify-between items-center text-[11px] font-bold text-white mb-1">
+                  <span>م / إسلام عبد الرحمن طه</span>
+                  <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">نشطة</span>
+                </div>
+                <div class="text-[10px] text-slate-400">باقة حجامة وقائية وعلاجية (4 جلسات)</div>
+              </div>
+            </div>
+
+            <!-- Footer Action -->
+            <div class="bg-cyan-500/10 border border-cyan-500/30 p-2 rounded-xl text-center text-cyan-400 font-bold text-[10px] flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-qrcode"></i> مسح QR وخصم فوري
+            </div>
+          </div>
+
+          <h3 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-cyan-400 text-xs"></i>
+            منظومة الجلسات والباقات
+          </h3>
+          <p class="text-[11px] text-slate-400 leading-relaxed">
+            متابعة رصيد كل عميل، كروت المتابعة وتفعيل باقات الاستشفاء والحجامة بضغطة زر.
+          </p>
+        </div>
+
+        <!-- الشاشة 2: سجل وملفات المرضى -->
+        <div class="card-glass p-3 flex flex-col">
+          <div class="screen-container p-2.5 flex flex-col justify-between mb-3 text-xs min-h-[380px] bg-[#091516] border-emerald-500/30">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+              <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-[11px]">
+                <i class="fa-solid fa-id-card-clip"></i> سجل وملفات المرضى
+              </div>
+              <span class="text-[9px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/20">+ عميل جديد</span>
+            </div>
+
+            <!-- Content -->
+            <div class="my-2 space-y-2">
+              <div class="bg-[#0e2122] p-2.5 rounded-xl border border-emerald-500/30">
+                <div class="flex justify-between items-center text-[11px] font-bold text-white mb-1">
+                  <span>كابتن / أحمد الشناوي</span>
+                  <span class="text-[9px] text-slate-400">27 سنة</span>
+                </div>
+                <div class="bg-amber-950/80 text-amber-300 text-[9px] p-1.5 rounded-lg border border-amber-600/30 mt-1 flex items-center gap-1">
+                  <i class="fa-solid fa-triangle-exclamation text-[10px]"></i> تجنب الضغط العنيف على الركبة اليسرى
+                </div>
+              </div>
+
+              <div class="bg-[#0e2122] p-2.5 rounded-xl border border-emerald-500/30">
+                <div class="flex justify-between items-center text-[11px] font-bold text-white mb-1">
+                  <span>م / إسلام عبد الرحمن</span>
+                  <span class="text-[9px] text-slate-400">34 سنة</span>
+                </div>
+                <div class="bg-amber-950/80 text-amber-300 text-[9px] p-1.5 rounded-lg border border-amber-600/30 mt-1 flex items-center gap-1">
+                  <i class="fa-solid fa-triangle-exclamation text-[10px]"></i> ممنوع شرب المنبهات قبل الحجامة بساعتين
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Action -->
+            <div class="bg-emerald-500/10 border border-emerald-500/30 p-2 rounded-xl text-center text-emerald-400 font-bold text-[10px] flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-file-medical"></i> فتح الملف الصحي الشامل
+            </div>
+          </div>
+
+          <h3 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-users text-emerald-400 text-xs"></i>
+            سجل وملفات المرضى
+          </h3>
+          <p class="text-[11px] text-slate-400 leading-relaxed">
+            تنبيهات فورية للحالات الخاصة والأمراض المزمنة، وتاريخ الزيارات السابقة بدقة.
+          </p>
+        </div>
+
+        <!-- الشاشة 3: جدول المواعيد والكشوفات -->
+        <div class="card-glass p-3 flex flex-col">
+          <div class="screen-container p-2.5 flex flex-col justify-between mb-3 text-xs min-h-[380px] bg-[#0d1024] border-indigo-500/30">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+              <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-[11px]">
+                <i class="fa-solid fa-calendar-check"></i> جدول المواعيد
+              </div>
+              <span class="text-[9px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/20">منع التضارب</span>
+            </div>
+
+            <!-- Content -->
+            <div class="my-2 space-y-2">
+              <div class="flex gap-1 text-[9px]">
+                <span class="bg-cyan-500 text-slate-950 font-bold px-2 py-0.5 rounded">اليوم</span>
+                <span class="bg-slate-800 text-slate-300 px-2 py-0.5 rounded">الغد</span>
+              </div>
+              
+              <div class="bg-[#141838] p-2.5 rounded-xl border border-indigo-500/30">
+                <div class="flex justify-between items-center text-[10px] text-cyan-300 font-bold">
+                  <span>06:30 م</span>
+                  <span class="text-white">غرفة الريكفري 1</span>
+                </div>
+                <div class="text-[10px] font-bold text-slate-200 mt-1">كشف استشاري وتأهيل</div>
+                <div class="text-[8px] text-indigo-300 mt-0.5">الأخصائي المعالج: د. محمود</div>
+              </div>
+
+              <div class="bg-[#141838] p-2.5 rounded-xl border border-indigo-500/30">
+                <div class="flex justify-between items-center text-[10px] text-cyan-300 font-bold">
+                  <span>07:15 م</span>
+                  <span class="text-white">سرير الحجامة 2</span>
+                </div>
+                <div class="text-[10px] font-bold text-slate-200 mt-1">جلسة حجامة وقائية</div>
+              </div>
+            </div>
+
+            <!-- Footer Action -->
+            <div class="bg-indigo-500/10 border border-indigo-500/30 p-2 rounded-xl text-center text-indigo-400 font-bold text-[10px] flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-plus-circle"></i> حجز ذكي بدون أي تضارب
+            </div>
+          </div>
+
+          <h3 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-indigo-400 text-xs"></i>
+            جدول المواعيد والكشوفات
+          </h3>
+          <p class="text-[11px] text-slate-400 leading-relaxed">
+            تنظيم دقيق لمواعيد الكشف وجلسات الاستشفاء وتوزيع أوقات المعالجين وتفادي التعارض.
+          </p>
+        </div>
+
+        <!-- الشاشة 4: قارئ كود QR للعميل -->
+        <div class="card-glass p-3 flex flex-col">
+          <div class="screen-container p-2.5 flex flex-col justify-between mb-3 text-xs min-h-[380px] bg-[#1a1205] border-amber-500/30">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+              <div class="flex items-center gap-1.5 text-amber-400 font-bold text-[11px]">
+                <i class="fa-solid fa-qrcode"></i> قارئ QR الآمن
+              </div>
+              <span class="text-[9px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/20">حماية الجلسات</span>
+            </div>
+
+            <!-- Scanner Box Area -->
+            <div class="my-auto text-center p-3 border border-dashed border-amber-500/50 rounded-xl bg-amber-950/20">
+              <div class="w-12 h-12 mx-auto rounded-xl bg-amber-500/20 flex items-center justify-center text-xl text-amber-400 mb-2 animate-pulse">
+                <i class="fa-solid fa-camera"></i>
+              </div>
+              <div class="text-[10px] text-slate-300 font-bold">وجّه قارئ الباركود أو كاميرا الهاتف</div>
+              <div class="text-[8px] text-slate-400 mt-1">مسح فوري والتحقق التلقائي من الكود</div>
+            </div>
+
+            <!-- Footer Warning -->
+            <div class="bg-amber-950/60 border border-amber-500/30 p-2 rounded-xl text-center text-amber-300 text-[8px] leading-tight">
+              <i class="fa-solid fa-lock text-[9px] ml-1"></i> لا يمكن الخصم إلا بوجود كود العميل السري لمنع التلاعب
+            </div>
+          </div>
+
+          <h3 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-shield-cat text-amber-400 text-xs"></i>
+            حضور وخصم الـ QR الآمن
+          </h3>
+          <p class="text-[11px] text-slate-400 leading-relaxed">
+            خصم جلسة المريض عبر كود QR المشفر من هاتفه، لحماية حقوق المريض وإيرادات العيادة.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-14 bg-[#080d17] border-t border-slate-800 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="text-center mb-10">
+        <span class="text-cyan-400 text-xs font-black uppercase">التحول الرقمي</span>
+        <h2 class="text-xl sm:text-3xl font-black text-white mt-1">من الفوضى الإدارية إلى السيطرة السحابية</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <!-- السابق -->
+        <div class="card-glass p-5 border-red-500/30">
+          <div class="flex items-center gap-2 text-red-400 font-black text-sm mb-3">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>الواقع التقليدي المرهق</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-xmark text-red-400 mt-0.5"></i>
+              <span>أكوام دفاتر وملفات ورقية معرضة للتلف والضياع.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-xmark text-red-400 mt-0.5"></i>
+              <span>طوابير انتظار وتدافع عند الاستقبال لتسجيل البيانات يدوياً.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-xmark text-red-400 mt-0.5"></i>
+              <span>سيرفرات كيسة باهظة ومعرضة للأعطال وانقطاع الصيانة.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-xmark text-red-400 mt-0.5"></i>
+              <span>تسريب مالي وغياب الرؤية اللحظية للمدخلات والمصروفات.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- الحالي -->
+        <div class="card-glass p-5 border-cyan-500/50 bg-gradient-to-br from-[#0c1c2e] to-[#071220]">
+          <div class="flex items-center gap-2 text-cyan-400 font-black text-sm mb-3">
+            <i class="fa-solid fa-cloud-bolt"></i>
+            <span>منظومة العيادة الذكية</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-200 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+              <span>ملف طبي سحابي موحد لكل مريض متاح في ثوانٍ معدودة.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+              <span>تسجيل فوري بالـ QR يربط المريض والاستقبال والتمريض فوراً.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+              <span>نظام SaaS لا يحتاج أي أجهزة خوادم، مع تحديثات تلقائية مجاناً.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-cyan-400 mt-0.5"></i>
+              <span>إحكام مالي كامل يمنع الهدر ويوضح الإيرادات لحظة بلحظة.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-14 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="text-center mb-10">
+        <span class="text-cyan-400 text-xs font-black uppercase">الخصوصية الطبية</span>
+        <h2 class="text-xl sm:text-3xl font-black text-white mt-1">هرم الأمان والصلاحيات الدقيقة</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-center">
+        <!-- Role 1 -->
+        <div class="card-glass p-4">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-lg mb-2">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+          <div class="text-xs font-bold text-white">الطبيب والمدير</div>
+          <div class="text-[10px] text-cyan-400 font-bold mb-1">تحكم كامل</div>
+          <div class="text-[10px] text-slate-400">تقارير مالية، مؤشرات الأداء، ورؤية شاملة للعيادة.</div>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="card-glass p-4">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-lg mb-2">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <div class="text-xs font-bold text-white">الاستقبال</div>
+          <div class="text-[10px] text-emerald-400 font-bold mb-1">المواعيد والحجز</div>
+          <div class="text-[10px] text-slate-400">جدولة وحجز المواعيد وتحصيل الرسوم دون الاطلاع على الملف الطبي.</div>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="card-glass p-4">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-indigo-950 text-indigo-400 border border-indigo-500/30 flex items-center justify-center text-lg mb-2">
+            <i class="fa-solid fa-user-nurse"></i>
+          </div>
+          <div class="text-xs font-bold text-white">طاقم التمريض</div>
+          <div class="text-[10px] text-indigo-400 font-bold mb-1">القياسات الحيوية</div>
+          <div class="text-[10px] text-slate-400">إدخال الضغط، السكر، والوزن لتظهر فوراً على شاشة الطبيب.</div>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="card-glass p-4">
+          <div class="w-10 h-10 mx-auto rounded-xl bg-amber-950 text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg mb-2">
+            <i class="fa-solid fa-shield-virus"></i>
+          </div>
+          <div class="text-xs font-bold text-white">السحابة والنسخ</div>
+          <div class="text-[10px] text-amber-400 font-bold mb-1">تشفير مستمر</div>
+          <div class="text-[10px] text-slate-400">نسخ احتياطي لحظي على سيرفرات مشفرة 99.9% لمنع أي ضياع.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#04070e] border-t border-slate-800 px-4 sm:px-6">
+    <div class="max-w-xl mx-auto text-center">
+      
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-3xl mb-4 shadow-xl shadow-emerald-500/20">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+
+      <h2 class="text-xl sm:text-3xl font-black text-white mb-2">
+        منظومة العيادة الذكية: مستقبلك بيبدأ دلوقتي
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 mb-6">
+        تواصل معنا الآن عبر واتساب للحصول على عرض حي للنظام وتجربة مجانية مصممة لعيادتك.
+      </p>
+
+      <div class="card-glass p-5 border-cyan-500/30 shadow-2xl">
+        <span class="text-xs text-slate-400 block mb-1">الرقم المباشر للتواصل والاستفسار:</span>
+        <div class="text-2xl sm:text-3xl font-black text-emerald-400 font-mono tracking-wider mb-4" dir="ltr">
+          01131327616
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2.5">
+          <a href="https://wa.me/201131327616?text=مرحباً،%20أرغب%20في%20طلب%20عرض%20توضيحي%20وتجربة%20منظومة%20العيادة%20الذكية" target="_blank"
+             class="flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/20">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>محادثة واتساب فورية</span>
+          </a>
+          <button id="copy-btn" 
+                  class="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition border border-slate-700">
+            <i class="fa-regular fa-copy"></i>
+            <span id="copy-text">نسخ الرقم</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- تذييل الصفحة -->
+  <footer class="bg-black py-6 border-t border-slate-900 text-center text-xs text-slate-500 px-4">
+    <div class="flex flex-col sm:flex-row items-center justify-between max-w-5xl mx-auto gap-3">
+      <span>العيادة الذكية: مركز القيادة الطبي السحابي</span>
+      <span class="text-emerald-400 font-mono" dir="ltr">01131327616</span>
+      <span>جميع الحقوق محفوظة © 2026</span>
+    </div>
+  </footer>
+
+  <!-- زر واتساب العائم الثابت أسفل الشاشة -->
+  <div class="fixed bottom-5 right-5 z-50">
+    <a href="https://wa.me/201131327616?text=مرحباً،%20أرغب%20في%20معرفة%20تفاصيل%20نظام%20العيادة%20الذكية" target="_blank"
+       class="relative flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white shadow-xl shadow-emerald-500/40 transform transition hover:scale-110 active:scale-95"
+       aria-label="تواصل عبر واتساب">
+      <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+  </div>
+
+  <!-- إشعار نسخ الرقم -->
+  <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-4 py-2 rounded-xl border border-cyan-500/40 text-xs font-bold opacity-0 pointer-events-none transition-all duration-300">
+    تم نسخ الرقم بنجاح (01131327616)
+  </div>
+
+  <script>
+    // برمجة زر النسخ
+    const copyBtn = document.getElementById('copy-btn');
+    const copyText = document.getElementById('copy-text');
+    const toast = document.getElementById('toast');
+    const phone = '01131327616';
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const input = document.createElement('textarea');
+        input.value = phone;
+        document.body.appendChild(input);
+        input.select();
+        try {
+          document.execCommand('copy');
+          if (copyText) copyText.textContent = 'تم النسخ!';
+          if (toast) {
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+              toast.classList.add('opacity-0', 'pointer-events-none');
+              toast.classList.remove('opacity-100');
+              if (copyText) copyText.textContent = 'نسخ الرقم';
+            }, 2000);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+        document.body.removeChild(input);
+      });
+    }
+  </script>
+</body>
+</html>
