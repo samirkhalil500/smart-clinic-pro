@@ -3,514 +3,571 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منظومة الرعاية الذكية | الإدارة السحابية المتكاملة</title>
+  <title>العيادة الذكية | مركز القيادة الطبي السحابي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b111e;
-      --card-bg: #131d31;
-      --card-border: #1f2e4d;
-      --primary: #f59e0b;
-      --primary-hover: #d97706;
-      --accent: #10b981;
+      --bg: #070d18;
+      --card-bg: #0e1726;
+      --card-border: #1a273e;
+      --primary: #00d284;
+      --primary-hover: #00b370;
+      --accent: #f59e0b;
       --text: #f8fafc;
       --text-muted: #94a3b8;
-      --faq-bg: #162238;
-      --nav-bg: rgba(11, 17, 30, 0.85);
+      --faq-bg: #0b1320;
     }
 
-    body.light-mode {
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --card-border: #e2e8f0;
-      --primary: #d97706;
-      --primary-hover: #b45309;
-      --accent: #059669;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --faq-bg: #f1f5f9;
-      --nav-bg: rgba(255, 255, 255, 0.9);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
     body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--card-border);
-      padding: 14px 20px;
+    .container { max-width: 600px; margin: 0 auto; padding: 25px 18px 90px; }
+
+    /* الهيدر العلوي */
+    .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
+      margin-bottom: 25px;
     }
-    .brand { font-size: 1.3rem; font-weight: 900; color: var(--text); }
-    .brand span { color: var(--primary); }
-    
-    .nav-controls {
+    .phone-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 210, 132, 0.15);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      direction: ltr;
+    }
+    .brand-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+    .brand-logo span.tag {
+      background: #1e293b;
+      color: #38bdf8;
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
     }
 
-    .theme-toggle {
+    /* العنوان الرئيسي */
+    .hero-box { text-align: center; margin-bottom: 30px; }
+    .badge-pill {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero-title { font-size: 1.85rem; font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 10px; }
+    .hero-title span { color: var(--primary); display: block; }
+    .hero-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+
+    /* الأزرار الرئيسية */
+    .btn-main {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: #070d18;
+      text-align: center;
+      padding: 13px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-decoration: none;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 20px rgba(0, 210, 132, 0.3);
+    }
+    .btn-secondary {
+      display: block;
+      width: 100%;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      color: var(--text);
-      padding: 8px 16px;
-      border-radius: 30px;
-      cursor: pointer;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      margin-bottom: 25px;
+    }
+
+    /* إحصائيات سريعة */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 15px 12px;
+      text-align: center;
+    }
+    .stat-card .val { font-size: 1.4rem; font-weight: 900; color: var(--primary); }
+    .stat-card .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; }
+
+    /* قسم الفيديو */
+    .video-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .video-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .video-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 6px; }
+    .video-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; }
+    video { width: 100%; border-radius: 12px; display: block; background: #000; }
+
+    .video-features { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .vf-item {
+      background: rgba(14, 23, 38, 0.7);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
       font-weight: 700;
-      font-size: 0.9rem;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .theme-toggle:hover { border-color: var(--primary); }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+    /* العناوين الفرعية */
+    .sec-header { text-align: center; margin: 40px 0 20px; }
+    .sec-tag { color: #38bdf8; font-size: 0.8rem; font-weight: 800; }
+    .sec-title { font-size: 1.45rem; font-weight: 900; margin-top: 4px; }
+    .sec-desc { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
 
-    .hero { text-align: center; margin-bottom: 40px; }
-    .badge {
-      display: inline-block;
-      background: rgba(245, 158, 11, 0.12);
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      padding: 6px 20px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-    .hero h1 { font-size: 2.5rem; font-weight: 900; line-height: 1.3; margin-bottom: 15px; }
-    .hero h1 span { color: var(--primary); }
-    .hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 760px; margin: 0 auto; }
-
-    /* مشغل الفيديو */
-    .video-section { display: flex; justify-content: center; margin: 30px 0 60px; }
-    .video-card {
-      width: 100%;
-      max-width: 820px;
-      background: #000;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 2px solid var(--card-border);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    }
-    .video-card video { width: 100%; display: block; }
-
-    .section-title { text-align: center; margin-bottom: 35px; }
-    .section-title h2 { font-size: 2rem; font-weight: 900; margin-bottom: 8px; }
-    .section-title p { color: var(--text-muted); font-size: 1rem; }
-
-    /* شبكة الشاشات المحسنة (2x2 واضحة وكبيرة) */
-    .screens-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
-      gap: 28px;
-      margin-bottom: 70px;
-    }
-    @media (max-width: 768px) {
-      .screens-grid { grid-template-columns: 1fr; }
-    }
-    .screen-item {
+    /* بطاقات الشاشات */
+    .screen-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 18px;
       padding: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-      display: flex;
-      flex-direction: column;
+      margin-bottom: 20px;
     }
-    .img-wrapper {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
+    .screen-card img { width: 100%; border-radius: 12px; margin-bottom: 12px; display: block; border: 1px solid var(--card-border); }
+    .screen-card h3 { font-size: 1.05rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .screen-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* المقارنة والتحول الرقمي */
+    .compare-card {
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .compare-card.bad {
+      background: rgba(239, 68, 68, 0.04);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .compare-card.good {
+      background: rgba(0, 210, 132, 0.05);
+      border: 1px solid rgba(0, 210, 132, 0.25);
+    }
+    .compare-title { font-weight: 900; font-size: 1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .compare-card.bad .compare-title { color: #f87171; }
+    .compare-card.good .compare-title { color: var(--primary); }
+    .compare-list { list-style: none; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px; }
+    .compare-list li { display: flex; align-items: center; gap: 8px; }
+
+    /* هرم الأمان والصلاحيات */
+    .role-item {
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
-      background: #080d17;
-      cursor: zoom-in;
+      padding: 14px;
+      border-radius: 14px;
+      margin-bottom: 10px;
     }
-    .img-wrapper img {
-      width: 100%;
-      height: 280px;
-      object-fit: contain;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .img-wrapper:hover img {
-      transform: scale(1.02);
-    }
-    .zoom-hint {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      pointer-events: none;
-    }
-    .screen-info {
-      padding: 14px 6px 4px;
-      text-align: right;
-    }
-    .screen-info h4 { font-size: 1.15rem; font-weight: 800; color: var(--text); }
-    .screen-info p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+    .role-header { font-weight: 800; font-size: 0.95rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+    .role-desc { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* عارض الصور المنبثق (Lightbox) */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img {
-      max-width: 95%;
-      max-height: 90vh;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-      border: 1px solid #334155;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 25px;
-      right: 30px;
-      color: #fff;
-      font-size: 2.2rem;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* كروت الأسعار */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 26px;
-      margin-bottom: 60px;
-    }
-    .card {
+    /* باقات الأسعار */
+    .pricing-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 18px;
-      padding: 35px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    }
-    .card.featured {
-      border: 2px solid var(--primary);
+      padding: 24px 20px;
+      margin-bottom: 18px;
+      text-align: center;
       position: relative;
     }
-    .featured-tag {
+    .pricing-card.featured {
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 25px rgba(0, 210, 132, 0.15);
+    }
+    .badge-pop {
       position: absolute;
-      top: -13px;
+      top: -12px;
       left: 50%;
       transform: translateX(-50%);
       background: var(--primary);
-      color: #fff;
-      font-weight: 800;
+      color: #070d18;
+      font-weight: 900;
       font-size: 0.75rem;
-      padding: 3px 16px;
+      padding: 2px 14px;
       border-radius: 20px;
     }
-    .card h3 { font-size: 1.3rem; margin-bottom: 8px; font-weight: 800; }
-    .card-desc { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px; min-height: 42px; }
-    .price-value { font-size: 2.3rem; font-weight: 900; color: var(--primary); margin-bottom: 20px; }
-    .price-value span { font-size: 0.95rem; color: var(--text); font-weight: 600; }
+    .pricing-title { font-size: 1.15rem; font-weight: 900; margin-bottom: 6px; }
+    .pricing-price { font-size: 2.1rem; font-weight: 900; color: var(--primary); margin-bottom: 14px; }
+    .pricing-price span { font-size: 0.85rem; color: var(--text); font-weight: 600; }
+    .pricing-features { list-style: none; text-align: right; font-size: 0.85rem; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .pricing-features li::before { content: "✔ "; color: var(--primary); font-weight: 900; }
 
-    .feature-list { list-style: none; margin-bottom: 30px; }
-    .feature-list li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text); display: flex; align-items: center; gap: 10px; }
-    .feature-list li::before { content: "✔"; color: var(--accent); font-weight: 900; }
-
-    .cta-btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 800;
-      padding: 14px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .cta-btn:hover { background: var(--primary-hover); }
-    .cta-btn.secondary {
-      background: transparent;
-      border: 1px solid var(--card-border);
-      color: var(--text);
-    }
-    .cta-btn.secondary:hover { background: rgba(0,0,0,0.05); }
-
-    /* الأسئلة الشائعة */
-    .faq-section { max-width: 800px; margin: 0 auto 50px; }
+    /* الأسئلة الشائعة الأكورديون */
     .faq-item {
       background: var(--faq-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       overflow: hidden;
     }
-    .faq-question {
-      padding: 18px 22px;
-      cursor: pointer;
+    .faq-q {
+      padding: 14px 16px;
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      user-select: none;
     }
-    .faq-question::after {
-      content: "+";
-      font-size: 1.5rem;
-      color: var(--primary);
-      transition: transform 0.3s ease;
-    }
-    .faq-item.active .faq-question::after {
-      transform: rotate(45deg);
-    }
-    .faq-answer {
+    .faq-q::after { content: "+"; color: var(--primary); font-size: 1.3rem; }
+    .faq-item.active .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      padding: 0 22px;
+      transition: max-height 0.3s ease;
+      padding: 0 16px;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      font-size: 0.95rem;
-      border-top: 1px solid transparent;
     }
-    .faq-item.active .faq-answer {
-      max-height: 200px;
-      padding: 14px 22px 20px;
-      border-top-color: var(--card-border);
+    .faq-item.active .faq-a {
+      max-height: 180px;
+      padding: 10px 16px 16px;
+      border-top: 1px solid var(--card-border);
     }
+
+    /* كارت الحجز والواتساب بالأسفل */
+    .final-cta {
+      background: #0b1424;
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 24px 18px;
+      text-align: center;
+      margin-top: 40px;
+      box-shadow: 0 10px 30px rgba(0, 210, 132, 0.2);
+    }
+    .final-cta h2 { font-size: 1.35rem; font-weight: 900; margin-bottom: 8px; }
+    .final-cta p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
+    .phone-box {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: var(--primary);
+      direction: ltr;
+      margin-bottom: 14px;
+    }
+
+    /* زر واتساب عائم */
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 54px;
+      height: 54px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      z-index: 1000;
+      text-decoration: none;
+    }
+    .floating-wa svg { width: 30px; height: 30px; fill: #fff; }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="brand">منظومة <span>الرعاية الذكية</span></div>
-    
-    <div class="nav-controls">
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-        <span id="themeIcon">☀️</span>
-        <span id="themeText">الوضع الفاتح</span>
-      </button>
-    </div>
-  </nav>
-
   <div class="container">
-    <section class="hero">
-      <div class="badge">المنظومة السحابية لإدارة مراكز التأهيل والاستشفاء والعيادات</div>
-      <h1>إدارة مركزك أصبحت <span>أسهل وأذكى</span></h1>
-      <p>تنظيم مواعيد الجلسات والاستشارات، منع التعارض، كود QR لحضور وخصم فوري، وسجل كامل للموانع الصحية وحسابات دقيقة للخزينة.</p>
-    </section>
+    
+    <!-- الهيدر العلوي -->
+    <div class="top-bar">
+      <div class="brand-logo">
+        <span class="tag">Cloud SaaS</span>
+        <div>العيادة الذكية</div>
+      </div>
+      <a href="https://wa.me/201131327616" class="phone-badge" target="_blank">
+        01131327616 💬
+      </a>
+    </div>
 
-    <!-- مشغل الفيديو -->
-    <div class="video-section">
-      <div class="video-card">
-        <video controls playsinline preload="metadata">
-          <source src="العيادة_الذكية_مركز_القيادة_الطبي_السحابي.mp4" type="video/mp4" />
-          <source src="العيادة ().mp4" type="video/mp4" />
-          متصفحك لا يدعم تشغيل الفيديو.
-        </video>
+    <!-- الهيدر التعريفي -->
+    <div class="hero-box">
+      <div class="badge-pill">● منظومة الحوسبة السحابية المتكاملة للمراكز والعيادات</div>
+      <h1 class="hero-title">
+        العيادة الذكية:
+        <span>مركز القيادة الطبي السحابي</span>
+      </h1>
+      <p class="hero-desc">
+        تحول رقمي شامل يمنحك تحكماً مطلقاً، أماناً تاماً، ووقتاً أكثر لرعاية مرضاك بدلاً من الغرق في فوضى الدفاتر والكراكيب.
+      </p>
+
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20تجربة%20منظومة%20العيادة%20الذكية" class="btn-main" target="_blank">
+        تواصل واتساب: 01131327616 💬
+      </a>
+      <a href="#screens" class="btn-secondary">
+        معاينة شاشات النظام 📱
+      </a>
+    </div>
+
+    <!-- الإحصائيات -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="val">100%</div>
+        <div class="lbl">سحابي بدون سيرفرات</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">0 ثانية</div>
+        <div class="lbl">تأخير في مزامنة QR</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">0 تعارض</div>
+        <div class="lbl">في المواعيد والغرف</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">24/7</div>
+        <div class="lbl">دعم فني وتحديثات</div>
       </div>
     </div>
 
-    <!-- معرض شاشات النظام الحقيقية (بتنسيق واسع وعالي الوضوح) -->
-    <div class="section-title">
-      <h2>شاشات النظام من واقع العمل اليومي</h2>
-      <p>اضغط على أي صورة لتكبيرها وعرض تفاصيل الشاشة بدقة فائقة</p>
-    </div>
+    <!-- قسم الفيديو -->
+    <div class="video-container">
+      <div class="video-tag">▶ الفيديو التعريفي الرسمي (35 ثانية)</div>
+      <h2 class="video-title">شاهد كيف تعمل منظومة "العيادة الذكية"</h2>
+      <p class="video-sub">شرح مرئي يوضح نقل عيادتك بالكامل من فوضى الدفاتر إلى التحكم السحابي والأمان التام.</p>
+      
+      <video controls playsinline preload="metadata">
+        <source src="العيادة_الذكية_مركز_القيادة_الطبي_السحابي.mp4" type="video/mp4" />
+        <source src="العيادة ().mp4" type="video/mp4" />
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
 
-    <div class="screens-grid">
-      <div class="screen-item">
-        <div class="img-wrapper" onclick="openLightbox('1000202819.jpg')">
-          <img src="1000202819.jpg" alt="جدول المواعيد والغرف" />
-          <div class="zoom-hint">🔍 انقر للتكبير</div>
-        </div>
-        <div class="screen-info">
-          <h4>جدول المواعيد وإدارة الغرف</h4>
-          <p>منع تضارب الحجوزات وتنظيم مواعيد الكشوفات والجلسات بدقة متناهية.</p>
-        </div>
-      </div>
-
-      <div class="screen-item">
-        <div class="img-wrapper" onclick="openLightbox('1000202822.jpg')">
-          <img src="1000202822.jpg" alt="سجل وملفات المرضى والموانع" />
-          <div class="zoom-hint">🔍 انقر للتكبير</div>
-        </div>
-        <div class="screen-info">
-          <h4>سجل العملاء والتنبيه بالموانع</h4>
-          <p>تنبيه فوري باللون الأصفر بالأمراض والموانع الصحية لحماية المريض والمركز.</p>
-        </div>
-      </div>
-
-      <div class="screen-item">
-        <div class="img-wrapper" onclick="openLightbox('1000202821.jpg')">
-          <img src="1000202821.jpg" alt="تتبع ومتابعة الجلسات والباقات" />
-          <div class="zoom-hint">🔍 انقر للتكبير</div>
-        </div>
-        <div class="screen-info">
-          <h4>متابعة الجلسات والباقات المستهلكة</h4>
-          <p>شريط تقدم رقمي ومرئي يوضح الجلسات المتبقية والمنفذة بدقة تامة.</p>
-        </div>
-      </div>
-
-      <div class="screen-item">
-        <div class="img-wrapper" onclick="openLightbox('1000202820.jpg')">
-          <img src="1000202820.jpg" alt="قارئ كود QR الذكي" />
-          <div class="zoom-hint">🔍 انقر للتكبير</div>
-        </div>
-        <div class="screen-info">
-          <h4>قارئ الـ QR الذكي للخصم الفوري</h4>
-          <p>حضور وخصم آمن من هاتف العميل يمنع النزاعات وتسجيل الجلسات الوهمية.</p>
-        </div>
+      <div class="video-features">
+        <div class="vf-item">⚡ إلغاء فوري لطوابير الانتظار</div>
+        <div class="vf-item">🛡️ أمان وصلاحيات دقيقة</div>
+        <div class="vf-item">📈 تقارير ومضاعفة للأرباح</div>
       </div>
     </div>
 
-    <!-- نافذة التكبير المنبثقة للصور -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-      <span class="lightbox-close">&times;</span>
-      <img id="lightboxImg" src="" alt="شاشة مكبرة" />
+    <!-- معرض الشاشات الفعلية -->
+    <div class="sec-header" id="screens">
+      <div class="sec-tag">واجهات النظام الفعلية</div>
+      <h2 class="sec-title">استكشف الشاشات الأربع الرئيسية</h2>
+      <p class="sec-desc">محاكاة دقيقة وتفاعلية لشاشات نظامك الليلي المصمم لراحة العين وسرعة الإنجاز</p>
     </div>
 
-    <!-- خطط الاشتراك المعتمدة -->
-    <div class="section-title">
-      <h2>خطط الاشتراك الرسمية المعتمدة</h2>
-      <p>بدون رسوم تأسيس خفية أو تكاليف صيانة إضافية</p>
+    <div class="screen-card">
+      <img src="1000202821.jpg" alt="منظومة الجلسات والباقات" />
+      <h3>منظومة تتبع ومتابعة الجلسات والباقات</h3>
+      <p>متابعة رصيد كل عميل، كروت المتابعة وتفعيل باقات الاستشفاء والحجامة بضغطة زر.</p>
     </div>
 
-    <div class="pricing-grid">
-      <div class="card">
-        <div>
-          <h3>الاشتراك الشهري (للفرع)</h3>
-          <p class="card-desc">مرونة كاملة في التشغيل دون التزام مالي طويل الأجل.</p>
-          <div class="price-value">350 <span>ج.م / شهرياً</span></div>
-          <ul class="feature-list">
-            <li>إدارة جدول المواعيد والغرف بالكامل</li>
-            <li>قارئ كود QR للخصم والحضور الآمن</li>
-            <li>ملف التنبيه بالموانع الصحية</li>
-            <li>تقارير الخزينة والتحصيل اليومي</li>
-          </ul>
-        </div>
-        <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20في%20الخطة%20الشهرية%20لمنظومة%20الرعاية%20الذكية" class="cta-btn secondary" target="_blank">
-          طلب الاشتراك الشهري 📲
-        </a>
-      </div>
-
-      <div class="card featured">
-        <div class="featured-tag">الخطة المفضلة للمراكز المستقرة</div>
-        <div>
-          <h3>الاشتراك السنوي (للفرع)</h3>
-          <p class="card-desc">استقرار تشغيلي مستمر طوال العام مع تحديثات دورية ودعم مباشر.</p>
-          <div class="price-value">3,500 <span>ج.م / سنوياً</span></div>
-          <ul class="feature-list">
-            <li>جميع صلاحيات وميزات المنظومة السحابية</li>
-            <li>عدد غير محدود من العملاء والمستخدمين</li>
-            <li>نسخ احتياطي سحابي تلقائي لبيانات المركز</li>
-            <li>دعم فني وتدريب متواصل لفريق العمل</li>
-          </ul>
-        </div>
-        <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20في%20الخطة%20السنوية%20لمنظومة%20الرعاية%20الذكية" class="cta-btn" target="_blank">
-          طلب الاشتراك السنوي 📲
-        </a>
-      </div>
-
-      <div class="card">
-        <div>
-          <h3>الاشتراك السنوي (فرعين)</h3>
-          <p class="card-desc">تحكم كامل في فروعك من لوحة إدارة مركزية موحدة للإدارة العليا.</p>
-          <div class="price-value">6,000 <span>ج.م / سنوياً</span></div>
-          <ul class="feature-list">
-            <li>ربط وتنسيق فرعين في واجهة سحابية واحدة</li>
-            <li>صلاحيات مخصصة لكل موظف وأخصائي</li>
-            <li>تقارير مالية مقارنة بين أداء الفرعين</li>
-            <li>أولوية فورية في المتابعة والدعم الفني</li>
-          </ul>
-        </div>
-        <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20في%20خطة%20الفرعين%20السنوية%20لمنظومة%20الرعاية%20الذكية" class="cta-btn secondary" target="_blank">
-          طلب باقة الفرعين 📲
-        </a>
-      </div>
+    <div class="screen-card">
+      <img src="1000202822.jpg" alt="سجل وملفات المرضى" />
+      <h3>سجل وملفات المرضى (الموانع الطبية)</h3>
+      <p>تنبيهات فورية للحالات الخاصة والأمراض المزمنة، وتاريخ الزيارات السابقة بدقة.</p>
     </div>
 
-    <!-- قسم الأسئلة الشائعة -->
-    <div class="section-title">
-      <h2>الأسئلة الشائعة</h2>
-      <p>كل ما تحتاج معرفته حول تشغيل المنظومة في مركزك أو عيادتك</p>
+    <div class="screen-card">
+      <img src="1000202819.jpg" alt="جدول المواعيد والكشوفات" />
+      <h3>جدول المواعيد والكشوفات (منع التضارب)</h3>
+      <p>تنظيم دقيق لمواعيد الكشف وجلسات الاستشفاء وتوزيع أوقات المعالجين وتفادي التعارض.</p>
     </div>
 
-    <div class="faq-section">
-      <div class="faq-item">
-        <div class="faq-question">هل تحتاج المنظومة إلى تثبيت أو أجهزة بمواصفات خاصة؟</div>
-        <div class="faq-answer">لا إطلاقاً، المنظومة سحابية بالكامل، يمكنك تشغيلها مباشرة من متصفح الإنترنت على الهاتف المحمول، التابلت، أو اللابتوب والكمبيوتر دون الحاجة لشراء سيرفرات خاصة.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">كيف يضمن نظام كود الـ QR عدم ضياع الجلسات أو التلاعب؟</div>
-        <div class="faq-answer">يمتلك كل عميل رمز QR خاص بملفه وباقته؛ يقوم موظف الاستقبال أو الأخصائي بمسح الكود عبر كاميرا الهاتف ليتم خصم الجلسة فوراً وتوثيق تاريخها ووقتها، مما يمنع نهائياً الأخطاء والتسجيل الوهمي.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">هل بيانات العملاء والحسابات المالية في أمان؟</div>
-        <div class="faq-answer">نعم، تعتمد المنظومة على قواعد بيانات مشفرة وسحابية مع إجراء نسخ احتياطي تلقائي بانتظام لحماية كامل البيانات والتقارير المالية من الفقدان.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">هل يمكنني فصل صلاحيات موظف الاستقبال عن المعالجين؟</div>
-        <div class="faq-answer">بالتأكيد، يتيح لك النظام إدارة دقيقة للصلاحيات؛ موظف الاستقبال تظهر له شاشات الحجز والخزينة، المعالج يرى المواعيد والموانع الخاصة بحالاته فقط، والإدارة تمتلك الصلاحية الشاملة على كامل التقارير.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">كيف أبدأ استخدام المنظومة بعد الاشتراك؟</div>
-        <div class="faq-answer">بمجرد تواصلك معنا عبر واتساب وإتمام الاشتراك، يتم تسليمك حساب المركز فوراً مع توفير جلسة تدريب سريعة لك ولفريق عملك لبدء العمل في نفس اليوم بكل سهولة.</div>
-      </div>
+    <div class="screen-card">
+      <img src="1000202820.jpg" alt="قارئ الـ QR كود" />
+      <h3>حضور وخصم الـ QR الآمن</h3>
+      <p>خصم جلسة المريض عبر كود QR المشفر من هاتفه، لحماية حقوق المريض وإيرادات العيادة.</p>
     </div>
+
+    <!-- التحول الرقمي والمقارنة -->
+    <div class="sec-header">
+      <div class="sec-tag">التحول الرقمي</div>
+      <h2 class="sec-title">من الفوضى الإدارية إلى السيطرة السحابية</h2>
+    </div>
+
+    <div class="compare-card bad">
+      <div class="compare-title">⚠️ الواقع التقليدي المرهق</div>
+      <ul class="compare-list">
+        <li>✖ أكوام دفاتر وملفات ورقية معرضة للتلف والضياع.</li>
+        <li>✖ طوابير انتظار وتدافع عند الاستقبال لتسجيل البيانات يدوياً.</li>
+        <li>✖ سيرفرات كيسة باهظة ومعرضة للأعطال وانقطاع الصيانة.</li>
+        <li>✖ تسريب مالي وغياب الرؤية اللحظية للمدخلات والمصروفات.</li>
+      </ul>
+    </div>
+
+    <div class="compare-card good">
+      <div class="compare-title">☁️ منظومة العيادة الذكية</div>
+      <ul class="compare-list">
+        <li>✔ ملف طبي سحابي موحد لكل مريض متاح في ثوانٍ معدودة.</li>
+        <li>✔ تسجيل فوري بالـ QR يربط المريض والاستقبال والتمريض فوراً.</li>
+        <li>✔ نظام SaaS لا يحتاج أي أجهزة خوادم، مع تحديثات تلقائية مجاناً.</li>
+        <li>✔ إحكام مالي كامل يمنع الهدر ويوضح الإيرادات لحظة بلحظة.</li>
+      </ul>
+    </div>
+
+    <!-- هرم الأمان والصلاحيات -->
+    <div class="sec-header">
+      <div class="sec-tag">الخصوصية الطبية</div>
+      <h2 class="sec-title">هرم الأمان والصلاحيات الدقيقة</h2>
+    </div>
+
+    <div class="role-item">
+      <div class="role-header">👨‍⚕️ الطبيب والمدير (تحكم كامل)</div>
+      <div class="role-desc">تقارير مالية، مؤشرات الأداء، ورؤية شاملة للعيادة وسجل العمليات.</div>
+    </div>
+    <div class="role-item">
+      <div class="role-header">📅 الاستقبال (المواعيد والحجز)</div>
+      <div class="role-desc">جدولة وحجز المواعيد وتحصيل الرسوم دون الاطلاع على تفاصيل الملف الطبي.</div>
+    </div>
+    <div class="role-item">
+      <div class="role-header">🩺 طاقم التمريض (القياسات الحيوية)</div>
+      <div class="role-desc">إدخال الضغط، السكر، والوزن لتظهر فوراً على شاشة الطبيب.</div>
+    </div>
+    <div class="role-item">
+      <div class="role-header">🛡️ السحابة والنسخ الاحتياطي (تشفير مستمر)</div>
+      <div class="role-desc">نسخ احتياطي لحظي على سيرفرات مشفرة 99.9% لمنع أي ضياع للبيانات.</div>
+    </div>
+
+    <!-- خطط الاشتراك والأسعار -->
+    <div class="sec-header">
+      <div class="sec-tag">خطط الاستثمار</div>
+      <h2 class="sec-title">خطط الاشتراك المعتمدة</h2>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-title">الاشتراك الشهري (للفرع)</div>
+      <div class="pricing-price">350 <span>ج.م / شهرياً</span></div>
+      <ul class="pricing-features">
+        <li>إدارة جدول المواعيد والكشوفات بالكامل</li>
+        <li>قارئ كود QR للخصم والحضور الآمن</li>
+        <li>ملف التنبيه بالموانع الطبية والتحذيرات</li>
+        <li>تقارير الخزينة والتحصيل اليومي</li>
+      </ul>
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20الشهري%20(350%20ج.م)" class="btn-secondary" target="_blank">طلب الباقة الشهرية</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="badge-pop">الخطة الأكثر طلباً</div>
+      <div class="pricing-title">الاشتراك السنوي (للفرع)</div>
+      <div class="pricing-price">3,500 <span>ج.م / سنوياً</span></div>
+      <ul class="pricing-features">
+        <li>جميع صلاحيات وميزات المنظومة السحابية</li>
+        <li>عدد غير محدود من المرضى والمواعيد</li>
+        <li>نسخ احتياطي سحابي تلقائي لبيانات المركز</li>
+        <li>دعم فني وتدريب متواصل لفريق العمل</li>
+      </ul>
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20السنوي%20(3500%20ج.م)" class="btn-main" target="_blank">طلب الباقة السنوية</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-title">الاشتراك السنوي (فرعين)</div>
+      <div class="pricing-price">6,000 <span>ج.م / سنوياً</span></div>
+      <ul class="pricing-features">
+        <li>ربط وتنسيق فرعين في لوحة تحكم موحدة</li>
+        <li>صلاحيات مخصصة لكل موظف وأخصائي</li>
+        <li>تقارير مالية مقارنة بين أداء الفرعين</li>
+        <li>أولوية فورية في المتابعة والدعم الفني</li>
+      </ul>
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20اشتراك%20الفرعين%20(6000%20ج.م)" class="btn-secondary" target="_blank">طلب باقة الفرعين</a>
+    </div>
+
+    <!-- الأسئلة الشائعة -->
+    <div class="sec-header">
+      <div class="sec-tag">إزالة الشكوك</div>
+      <h2 class="sec-title">الأسئلة الشائعة</h2>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">هل بيانات مرضاي آمنة في السحابة؟</div>
+      <div class="faq-a">نعم، تعتمد المنظومة على تشفير متقدم ونسخ احتياطي لحظي يمنع أي فقدان أو تسريب للبيانات.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">هل النظام معقد على طاقم العمل؟</div>
+      <div class="faq-a">واجهة المنظومة صممت لتكون بديهية وسهلة جداً، ولا تتطلب أي خبرة تقنية مسبقة، مدعومة بصلاحيات واضحة ومحددة لكل موظف.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">ماذا لو احتجت إلى مساعدة أو تدريب؟</div>
+      <div class="faq-a">فريق الدعم الفني معك دائماً عبر واتساب والهاتف، مع تحديثات تلقائية مستمرة تصلك دون أي تدخل منك.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">كيف يمنع كود الـ QR تلاعب الجلسات؟</div>
+      <div class="faq-a">لكل مريض رمز QR مشفر وخاص به، يمسحه الاستقبال عند الحضور ليتم الخصم التلقائي وتوثيق الموعد دون أي مجال لتسجيل جلسة وهمية.</div>
+    </div>
+
+    <!-- كارت الحجز السفلي الرسمي -->
+    <div class="final-cta">
+      <h2>منظومة العيادة الذكية: مستقبلك بيبدأ دلوقتي</h2>
+      <p>تواصل معنا الآن عبر واتساب للحصول على عرض حي للنظام وتجربة مجانية مصممة لعيادتك.</p>
+      
+      <div class="phone-box">01131327616</div>
+      
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20بدء%20التجربة%20المجانية%20لمنظومة%20العيادة%20الذكية" class="btn-main" target="_blank">
+        محادثة واتساب فورية 💬
+      </a>
+      <button class="btn-secondary" style="margin-bottom:0;" onclick="copyNumber()">نسخ الرقم 📋</button>
+    </div>
+
   </div>
 
-  <script>
-    function toggleTheme() {
-      const body = document.body;
-      const themeIcon = document.getElementById('themeIcon');
-      const themeText = document.getElementById('themeText');
-      
-      body.classList.toggle('light-mode');
-      
-      if (body.classList.contains('light-mode')) {
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'الوضع الداكن';
-      } else {
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'الوضع الفاتح';
-      }
-    }
+  <!-- زر واتساب العائم -->
+  <a href="https://wa.me/201131327616" class="floating-wa" target="_blank" title="تواصل عبر واتساب">
+    <svg viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
 
-    document.querySelectorAll('.faq-question').forEach(item => {
+  <script>
+    // تشغيل وإغلاق الأسئلة الشائعة
+    document.querySelectorAll('.faq-q').forEach(item => {
       item.addEventListener('click', () => {
-        const parent = item.parentElement;
-        parent.classList.toggle('active');
+        item.parentElement.classList.toggle('active');
       });
     });
 
-    function openLightbox(src) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightbox').classList.add('active');
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
+    // نسخ رقم الواتساب
+    function copyNumber() {
+      navigator.clipboard.writeText('01131327616').then(() => {
+        alert('تم نسخ الرقم: 01131327616');
+      });
     }
   </script>
 
