@@ -106,7 +106,27 @@
       font-weight: 800;
       font-size: 0.95rem;
       text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .btn-recova {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
       margin-bottom: 25px;
+      transition: all 0.2s ease;
+    }
+    .btn-recova:hover {
+      background: rgba(56, 189, 248, 0.2);
     }
 
     /* إحصائيات سريعة */
@@ -167,7 +187,7 @@
     .sec-title { font-size: 1.45rem; font-weight: 900; margin-top: 4px; }
     .sec-desc { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
 
-    /* بطاقات الشاشات */
+    /* بطاقات الشاشات التفاعلية والمتجاوبة */
     .screen-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -175,7 +195,40 @@
       padding: 16px;
       margin-bottom: 20px;
     }
-    .screen-card img { width: 100%; border-radius: 12px; margin-bottom: 12px; display: block; border: 1px solid var(--card-border); }
+    .img-wrapper {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 12px;
+      background: #000;
+      cursor: pointer;
+    }
+    .img-wrapper img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+    .img-wrapper:hover img {
+      transform: scale(1.02);
+    }
+    .img-hint {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(7, 13, 24, 0.85);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-weight: 700;
+      pointer-events: none;
+    }
     .screen-card h3 { font-size: 1.05rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
     .screen-card p { font-size: 0.85rem; color: var(--text-muted); }
 
@@ -258,19 +311,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      user-select: none;
     }
-    .faq-q::after { content: "+"; color: var(--primary); font-size: 1.3rem; }
+    .faq-q::after { content: "+"; color: var(--primary); font-size: 1.3rem; transition: transform 0.2s ease; }
     .faq-item.active .faq-q::after { transform: rotate(45deg); }
     .faq-a {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.3s ease, padding 0.3s ease;
       padding: 0 16px;
       font-size: 0.85rem;
       color: var(--text-muted);
     }
     .faq-item.active .faq-a {
-      max-height: 180px;
+      max-height: 250px;
       padding: 10px 16px 16px;
       border-top: 1px solid var(--card-border);
     }
@@ -324,8 +378,8 @@
         <span class="tag">RECOVA CLOUD</span>
         <div>منظومة الرعاية والتأهيل</div>
       </div>
-      <a href="https://wa.me/201131327616" class="phone-badge" target="_blank">
-        01131327616 💬
+      <a href="https://wa.me/201131327616" class="phone-badge dynamic-wa-link" target="_blank">
+        <span class="phone-text">01131327616</span> 💬
       </a>
     </div>
 
@@ -340,11 +394,14 @@
         إشراف سحابي متكامل يمنح إدارة مراكز التأهيل الطبي والاستشفاء تحكماً مطلقاً، أماناً تاماً، وإلغاءً لفوضى الدفاتر والجلسات.
       </p>
 
-      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20تجربة%20منظومة%20الرعاية%20والتأهيل%20(7%20أيام)" class="btn-main" target="_blank">
-        احصل على تجربة مجانية (7 أيام) 🎁
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20تجربة%20منظومة%20الرعاية%20والتأهيل%20(3%20أيام)" class="btn-main dynamic-wa-link" target="_blank">
+        احصل على تجربة مجانية (3 أيام فقط) 🎁
       </a>
       <a href="#screens" class="btn-secondary">
         معاينة شاشات النظام 📱
+      </a>
+      <a href="https://el3eyada-clinic.web.app/pricing" class="btn-recova" target="_blank">
+        🌐 زيارة بوابة ريكوفا السحابية الأصلية وتفاصيل الأسعار
       </a>
     </div>
 
@@ -356,7 +413,7 @@
       </div>
       <div class="stat-card">
         <div class="val">0 ثانية</div>
-        <div class="lbl">تأخير في مزامنة QR</div>
+        <div class="lbl">تأخير في مزامنة QR والباركود</div>
       </div>
       <div class="stat-card">
         <div class="val">0 تعارض</div>
@@ -380,43 +437,58 @@
       </video>
       <div class="video-features">
         <div class="vf-item">⚡ إلغاء فوري لطوابير الانتظار وتداخل الغرف</div>
-        <div class="vf-item">🛡️ تشفير جلسات QR وحماية الإيرادات</div>
+        <div class="vf-item">🛡️ تشفير جلسات QR والباركود وحماية الإيرادات</div>
         <div class="vf-item">📈 تقارير ومتابعة باقات التأهيل والاستشفاء</div>
       </div>
     </div>
 
     <div class="sec-header" id="screens">
-      <div class="sec-tag">واجهات النظام الفعلية</div>
+      <div class="sec-tag">واجهات النظام الفعلية (اضغط للتكبير)</div>
       <h2 class="sec-title">استكشف الشاشات الخمس الرئيسية</h2>
-      <p class="sec-desc">تصميم ليلي احترافي وسريع مصمم لراحة العين وإدارة جلسات المركز بسلاسة</p>
+      <p class="sec-desc">تصميم ليلي متجاوب وسريع مصمم لراحة العين وإدارة جلسات المركز بسلاسة</p>
     </div>
 
     <div class="screen-card">
-      <img src="screen1.jpg" alt="منظومة الجلسات والباقات" />
+      <a href="screen1.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen1.jpg" alt="منظومة الجلسات والباقات" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
       <h3>منظومة تتبع ومتابعة الجلسات والباقات</h3>
       <p>متابعة رصيد كل عميل، كروت المتابعة وتفعيل باقات الاستشفاء والتأهيل بضغطة زر.</p>
     </div>
 
     <div class="screen-card">
-      <img src="screen2.jpg" alt="سجل وملفات المرضى" />
+      <a href="screen2.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen2.jpg" alt="سجل وملفات المرضى" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
       <h3>سجل وملفات المرضى (الموانع الطبية)</h3>
       <p>تنبيهات فورية للحالات الخاصة والأمراض المزمنة، وتاريخ الجلسات السابقة بدقة.</p>
     </div>
 
     <div class="screen-card">
-      <img src="screen3.jpg" alt="جدول المواعيد والكشوفات" />
+      <a href="screen3.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen3.jpg" alt="جدول المواعيد والكشوفات" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
       <h3>جدول المواعيد وجلسات التأهيل (منع التضارب)</h3>
       <p>تنظيم دقيق لمواعيد الجلسات وتوزيع أوقات الأخصائيين والغرف وتفادي أي تعارض.</p>
     </div>
 
     <div class="screen-card">
-      <img src="screen4.png" alt="قارئ الـ QR كود" />
-      <h3>حضور وخصم الـ QR المشفر</h3>
-      <p>خصم جلسة المشترك عبر كود QR من هاتفه، لحماية حقوق المركز ومنع أي تلاعب في الرصيد.</p>
+      <a href="screen4.png" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen4.png" alt="قارئ الـ QR والباركود المشفر" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
+      <h3>قارئ الـ QR والباركود المشفر للحضور</h3>
+      <p>خصم جلسة المشترك عبر مسح كود QR والباركود الآمن من الهاتف، لمنع التلاعب وتوثيق الجلسة لحظياً.</p>
     </div>
 
     <div class="screen-card">
-      <img src="screen5.jpg" alt="الخزينة واليومية المالية" />
+      <a href="screen5.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen5.jpg" alt="الخزينة واليومية المالية" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
       <h3>الخزينة واليومية وسندات القبض</h3>
       <p>توثيق المقبوضات وطرق الدفع (نقد، إنستاباي، فودافون كاش) وتقارير الإيرادات اللحظية للمركز.</p>
     </div>
@@ -441,7 +513,7 @@
       <div class="compare-title">☁ منظومة الرعاية من ريكوفا (Recova)</div>
       <ul class="compare-list">
         <li>✔ ملف تأهيلي سحابي موحد لكل مشترك متاح بلمح البصر.</li>
-        <li>✔ نظام QR ذكي لخصم الجلسات بدقة يمنع التلاعب نهائياً.</li>
+        <li>✔ نظام QR وباركود ذكي لخصم الجلسات يمنع التلاعب نهائياً.</li>
         <li>✔ منصة سحابية (SaaS) تعمل من أي متصفح وتحديثات فورية.</li>
         <li>✔ تقفيل خزانة رقمي وإحكام مالي كامل لكل باقة وجلسة.</li>
       </ul>
@@ -481,11 +553,11 @@
       <div class="pricing-price">350 <span>ج.م / شهرياً</span></div>
       <ul class="pricing-features">
         <li>إدارة جدول الجلسات والمواعيد بالكامل</li>
-        <li>قارئ كود QR للخصم والحضور الآمن</li>
+        <li>قارئ كود QR والباركود للخصم والحضور الآمن</li>
         <li>ملف التنبيه بالموانع الطبية والتحذيرات</li>
         <li>تقارير الخزينة والتحصيل اليومي</li>
       </ul>
-      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20الشهري%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-secondary" target="_blank">طلب الباقة الشهرية</a>
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20الشهري%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-secondary dynamic-wa-link" target="_blank">طلب الباقة الشهرية</a>
     </div>
 
     <div class="pricing-card featured">
@@ -498,7 +570,7 @@
         <li>نسخ احتياطي سحابي تلقائي لبيانات المركز</li>
         <li>دعم فني وتدريب متواصل لفريق العمل</li>
       </ul>
-      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20السنوي%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-main" target="_blank">طلب الباقة السنوية</a>
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20الاشتراك%20السنوي%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-main dynamic-wa-link" target="_blank">طلب الباقة السنوية</a>
     </div>
 
     <div class="pricing-card">
@@ -510,7 +582,7 @@
         <li>تقارير مالية مقارنة بين أداء الفرعين</li>
         <li>أولوية فورية في المتابعة والدعم الفني</li>
       </ul>
-      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20اشتراك%20الفرعين%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-secondary" target="_blank">طلب باقة الفرعين</a>
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20اشتراك%20الفرعين%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-secondary dynamic-wa-link" target="_blank">طلب باقة الفرعين</a>
     </div>
 
     <!-- الأسئلة الشائعة -->
@@ -520,17 +592,40 @@
     </div>
 
     <div class="faq-item">
+      <div class="faq-q">هل توجد أي مصاريف خفية أو رسوم تأسيس إضافية؟</div>
+      <div class="faq-a">إطلاقاً. لا توجد أي مصاريف تأسيس أو رسوم صيانة خفية. السعر المعلن يشمل كامل الاستضافة السحابية الآمنة، النسخ الاحتياطي التلقائي، والترقيات الدورية.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">هل يمكنني الترقية من خطة لأخرى في أي وقت؟</div>
+      <div class="faq-a">نعم بالتأكيد. يمكنك الترقية من الخطة الشهرية إلى السنوية أو إضافة فروع جديدة في أي وقت مع احتساب الأيام المتبقية من اشتراكك الحالي.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">ما هي وسائل الدفع وطرق تفعيل الحساب؟</div>
+      <div class="faq-a">نوفر وسائل دفع متعددة وسهلة تشمل: فودافون كاش، إنستاباي (InstaPay)، التحويلات البنكية المباشرة، والدفع الإلكتروني. يتم تفعيل الحساب وتزويدك ببيانات الدخول خلال أقل من 15 دقيقة.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">ماذا لو كان لدي مستشفى أو شبكة عيادات تتجاوز 3 فروع؟</div>
+      <div class="faq-a">نقدم حلول الشبكات الكبرى (Enterprise Edition) مع خادم سحابي خاص، تكامل API مع أجهزة المعامل والأشعة، وتدريب مخصص للموظفين. يسعدنا التواصل معك لتقديم عرض مالي وفني مفصل.</div>
+    </div>
+
+    <div class="faq-item">
       <div class="faq-q">هل بيانات المركز والمشتركين آمنة في السحابة؟</div>
       <div class="faq-a">نعم، تعتمد منظومة Recova Cloud على تشفير متقدم ونسخ احتياطي مستمر يمنع أي فقدان أو تسريب للبيانات.</div>
     </div>
+
     <div class="faq-item">
       <div class="faq-q">هل النظام معقد على طاقم العمل والاستقبال؟</div>
       <div class="faq-a">واجهة منظومة الرعاية صُممت لتكون بسيطة وسريعة جداً، ولا تتطلب أي خبرة تقنية سابقة، مع صلاحيات واضحة ومحددة لكل دور.</div>
     </div>
+
     <div class="faq-item">
       <div class="faq-q">ماذا لو احتجت إلى مساعدة أو تدريب؟</div>
       <div class="faq-a">فريق الدعم الفني معك دائماً عبر واتساب والهاتف، مع توفير فيديوهات شرح وتحديثات تلقائية مستمرة مجاناً.</div>
     </div>
+
     <div class="faq-item">
       <div class="faq-q">كيف يمنع كود الـ QR تلاعب الجلسات والباقات؟</div>
       <div class="faq-a">لكل مشترك رمز QR مشفر خاص به، يمسحه الاستقبال عند الحضور ليتم خصم الجلسة وتوثيق التوقيت دون أي مجال لتسجيل جلسات وهمية.</div>
@@ -539,11 +634,11 @@
     <!-- كارت الحجز السفلي الرسمي -->
     <div class="final-cta">
       <h2>منظومة الرعاية والتأهيل: مستقبلك بيبدأ دلوقتي</h2>
-      <p>تواصل معنا الآن عبر واتساب للحصول على عرض حي للنظام وتجربة مجانية (7 أيام) مخصصة لمركزك.</p>
+      <p>تواصل معنا الآن عبر واتساب للحصول على عرض حي للنظام وتجربة مجانية (3 أيام فقط) مخصصة لمركزك.</p>
       
-      <div class="phone-box">01131327616</div>
+      <div class="phone-box phone-text">01131327616</div>
       
-      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20بدء%20التجربة%20المجانية%20(7%20أيام)%20لمنظومة%20الرعاية%20والتأهيل" class="btn-main" target="_blank">
+      <a href="https://wa.me/201131327616?text=السلام%20عليكم،%20أريد%20بدء%20التجربة%20المجانية%20(3%20أيام)%20لمنظومة%20الرعاية%20والتأهيل" class="btn-main dynamic-wa-link" target="_blank">
         محادثة واتساب فورية 💬
       </a>
       <button class="btn-secondary" style="margin-bottom:0;" onclick="copyNumber()">نسخ الرقم 📋</button>
@@ -552,7 +647,7 @@
   </div>
 
   <!-- زر واتساب العائم -->
-  <a href="https://wa.me/201131327616" class="floating-wa" target="_blank" title="تواصل عبر واتساب">
+  <a href="https://wa.me/201131327616" class="floating-wa dynamic-wa-link" target="_blank" title="تواصل عبر واتساب">
     <svg viewBox="0 0 24 24">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
     </svg>
@@ -561,10 +656,13 @@
 <script>
   let activePhone = '01131327616';
 
-  document.querySelectorAll('.faq-q').forEach(item => {
-    item.addEventListener('click', () => {
-      item.parentElement.classList.toggle('active');
-    });
+  // تفعيل أكورديون الأسئلة الشائعة بطريقة Event Delegation الموثوقة
+  document.addEventListener('click', function(e) {
+    const q = e.target.closest('.faq-q');
+    if (q) {
+      const parent = q.parentElement;
+      parent.classList.toggle('active');
+    }
   });
 
   function copyNumber() {
@@ -573,7 +671,7 @@
     });
   }
 
-  // كود التبديل الشامل للرابط والنصوص
+  // كود التبديل الديناميكي النظيف الذي يحافظ على تفاعلية الصفحة
   window.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const customPhone = params.get('phone');
@@ -584,19 +682,21 @@
       
       activePhone = displayPhone;
 
-      // 1. تحديث كافة الروابط في الصفحة
-      document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+      // 1. تحديث الأرقام المعروضة في النصوص دون إعادة كتابة الصفحة كاملة
+      document.querySelectorAll('.phone-text').forEach(el => {
+        el.textContent = displayPhone;
+      });
+
+      // 2. تحديث كافة روابط الواتساب بالرقم الجديد
+      document.querySelectorAll('.dynamic-wa-link').forEach(link => {
         try {
           const url = new URL(link.href);
-          const currentText = url.searchParams.get('text') || '';
+          const currentText = url.searchParams.get('text');
           link.href = `https://wa.me/${intlPhone}${currentText ? '?text=' + encodeURIComponent(currentText) : ''}`;
         } catch (e) {
           link.href = `https://wa.me/${intlPhone}`;
         }
       });
-
-      // 2. استبدال الرقم في كل نصوص الصفحة (أعلى وأسفل الصفحة)
-      document.body.innerHTML = document.body.innerHTML.replaceAll('01131327616', displayPhone);
     }
   });
 </script>
