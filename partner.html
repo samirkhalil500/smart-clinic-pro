@@ -1,1 +1,772 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منظومة الرعاية والتأهيل الطبي والاستشفاء | Recova Cloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070d18;
+      --card-bg: #0e1726;
+      --card-border: #1a273e;
+      --primary: #00d284;
+      --primary-hover: #00b370;
+      --accent: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --faq-bg: #0b1320;
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+
+    .container { max-width: 600px; margin: 0 auto; padding: 25px 18px 90px; }
+
+    /* الهيدر العلوي */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    .phone-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 210, 132, 0.15);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      direction: ltr;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 1.05rem;
+    }
+    .brand-logo span.tag {
+      background: #1e293b;
+      color: #38bdf8;
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+    }
+
+    /* العنوان الرئيسي */
+    .hero-box { text-align: center; margin-bottom: 30px; }
+    .badge-pill {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero-title { font-size: 1.75rem; font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 10px; }
+    .hero-title span { color: var(--primary); display: block; }
+    .hero-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+
+    /* الأزرار الرئيسية */
+    .btn-main {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: #070d18;
+      text-align: center;
+      padding: 13px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-decoration: none;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 20px rgba(0, 210, 132, 0.3);
+    }
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .btn-recova {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      margin-bottom: 25px;
+      transition: all 0.2s ease;
+    }
+    .btn-recova:hover {
+      background: rgba(56, 189, 248, 0.2);
+    }
+
+    /* إحصائيات سريعة */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 15px 12px;
+      text-align: center;
+    }
+    .stat-card .val { font-size: 1.4rem; font-weight: 900; color: var(--primary); }
+    .stat-card .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; }
+
+    /* قسم الفيديو */
+    .video-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .video-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .video-title { font-size: 1.25rem; font-weight: 900; margin-bottom: 6px; }
+    .video-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; }
+    video { width: 100%; border-radius: 12px; display: block; background: #000; }
+
+    .video-features { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .vf-item {
+      background: rgba(14, 23, 38, 0.7);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* العناوين الفرعية */
+    .sec-header { text-align: center; margin: 40px 0 20px; }
+    .sec-tag { color: #38bdf8; font-size: 0.8rem; font-weight: 800; }
+    .sec-title { font-size: 1.45rem; font-weight: 900; margin-top: 4px; }
+    .sec-desc { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+
+    /* بطاقات الشاشات التفاعلية والمتجاوبة */
+    .screen-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .img-wrapper {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 12px;
+      background: #000;
+      cursor: pointer;
+    }
+    .img-wrapper img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+    .img-wrapper:hover img {
+      transform: scale(1.02);
+    }
+    .img-hint {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(7, 13, 24, 0.85);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .screen-card h3 { font-size: 1.05rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .screen-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* المقارنة والتحول الرقمي */
+    .compare-card {
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .compare-card.bad {
+      background: rgba(239, 68, 68, 0.04);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .compare-card.good {
+      background: rgba(0, 210, 132, 0.05);
+      border: 1px solid rgba(0, 210, 132, 0.25);
+    }
+    .compare-title { font-weight: 900; font-size: 1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .compare-card.bad .compare-title { color: #f87171; }
+    .compare-card.good .compare-title { color: var(--primary); }
+    .compare-list { list-style: none; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px; }
+    .compare-list li { display: flex; align-items: center; gap: 8px; }
+
+    /* هرم الأمان والصلاحيات */
+    .role-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 14px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+    .role-header { font-weight: 800; font-size: 0.95rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+    .role-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* باقات الأسعار */
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 24px 20px;
+      margin-bottom: 18px;
+      text-align: center;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 25px rgba(0, 210, 132, 0.15);
+    }
+    .badge-pop {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #070d18;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 2px 14px;
+      border-radius: 20px;
+    }
+    .pricing-title { font-size: 1.15rem; font-weight: 900; margin-bottom: 6px; }
+    .pricing-price { font-size: 2.1rem; font-weight: 900; color: var(--primary); margin-bottom: 14px; }
+    .pricing-price span { font-size: 0.85rem; color: var(--text); font-weight: 600; }
+    .pricing-features { list-style: none; text-align: right; font-size: 0.85rem; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .pricing-features li::before { content: "✔ "; color: var(--primary); font-weight: 900; }
+
+    /* الأسئلة الشائعة الأكورديون */
+    .faq-item {
+      background: var(--faq-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 14px 16px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq-q::after { content: "+"; color: var(--primary); font-size: 1.3rem; transition: transform 0.2s ease; }
+    .faq-item.active .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .faq-item.active .faq-a {
+      max-height: 250px;
+      padding: 10px 16px 16px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* كارت الحجز والواتساب بالأسفل */
+    .final-cta {
+      background: #0b1424;
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 24px 18px;
+      text-align: center;
+      margin-top: 40px;
+      box-shadow: 0 10px 30px rgba(0, 210, 132, 0.2);
+    }
+    .final-cta h2 { font-size: 1.35rem; font-weight: 900; margin-bottom: 8px; }
+    .final-cta p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
+    .phone-box {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: var(--primary);
+      direction: ltr;
+      margin-bottom: 14px;
+    }
+
+    /* زر واتساب عائم */
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 54px;
+      height: 54px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      z-index: 1000;
+      text-decoration: none;
+    }
+    .floating-wa svg { width: 30px; height: 30px; fill: #fff; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- الهيدر العلوي -->
+    <div class="top-bar">
+      <div class="brand-logo">
+        <span class="tag">RECOVA CLOUD</span>
+        <div>منظومة الرعاية والتأهيل</div>
+      </div>
+      <a href="https://wa.me/201142954136" class="phone-badge dynamic-wa-link" target="_blank">
+        <span class="phone-text">01142954136</span> 💬
+      </a>
+    </div>
+
+    <!-- الهيدر التعريفي -->
+    <div class="hero-box">
+      <div class="badge-pill">● منظومة ريكوفا السحابية | EL-RE3AYA</div>
+      <h1 class="hero-title">
+        منظومة الرعاية والتأهيل
+        <span>الإدارة السحابية لمراكز الاستشفاء</span>
+      </h1>
+      <p class="hero-desc">
+        إشراف سحابي متكامل يمنح إدارة مراكز التأهيل الطبي والاستشفاء تحكماً مطلقاً، أماناً تاماً، وإلغاءً لفوضى الدفاتر والجلسات.
+      </p>
+
+      <a href="https://wa.me/201142954136?text=السلام%20عليكم،%20أريد%20تجربة%20منظومة%20الرعاية%20والتأهيل%20(7%20أيام)" class="btn-main dynamic-wa-link" target="_blank">
+        احصل على تجربة مجانية (7 أيام كاملة) 🎁
+      </a>
+      <a href="#screens" class="btn-secondary">
+        معاينة شاشات النظام 📱
+      </a>
+      <a href="https://el3eyada-clinic.web.app/care.html?ref=AT-LZ4L4ZNZ" class="btn-recova" target="_blank" rel="noopener noreferrer">
+        🌐 زيارة بوابة ريكوفا السحابية للعيادة
+      </a>
+    </div>
+
+    <!-- الإحصائيات -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="val">100%</div>
+        <div class="lbl">سحابي بدون سيرفرات</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">0 ثانية</div>
+        <div class="lbl">تأخير في مزامنة QR والباركود</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">0 تعارض</div>
+        <div class="lbl">في المواعيد والغرف</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">24/7</div>
+        <div class="lbl">دعم فني وتحديثات</div>
+      </div>
+    </div>
+
+    <!-- قسم الفيديو -->
+    <div class="video-container">
+      <div class="video-tag">▶ الفيديو التعريفي الرسمي</div>
+      <h2 class="video-title">شاهد منظومة الرعاية والتأهيل عملياً</h2>
+      <p class="video-sub">شرح مرئي يوضح إدارة مركز التأهيل والاستشفاء بالكامل من ضبط الباقات إلى التحكم السحابي المالي الدقيق.</p>
+      
+      <video controls playsinline preload="metadata">
+        <source src="Video.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
+      <div class="video-features">
+        <div class="vf-item">⚡ إلغاء فوري لطوابير الانتظار وتداخل الغرف</div>
+        <div class="vf-item">🛡️ تشفير جلسات QR والباركود وحماية الإيرادات</div>
+        <div class="vf-item">📈 تقارير ومتابعة باقات التأهيل والاستشفاء</div>
+      </div>
+    </div>
+
+    <div class="sec-header" id="screens">
+      <div class="sec-tag">واجهات النظام الفعلية (اضغط للتكبير)</div>
+      <h2 class="sec-title">استكشف الشاشات الخمس الرئيسية</h2>
+      <p class="sec-desc">تصميم ليلي متجاوب وسريع مصمم لراحة العين وإدارة جلسات المركز بسلاسة</p>
+    </div>
+
+    <div class="screen-card">
+      <a href="screen1.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen1.jpg" alt="منظومة الجلسات والباقات" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
+      <h3>منظومة تتبع ومتابعة الجلسات والباقات</h3>
+      <p>متابعة رصيد كل عميل، كروت المتابعة وتفعيل باقات الاستشفاء والتأهيل بضغطة زر.</p>
+    </div>
+
+    <div class="screen-card">
+      <a href="screen2.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen2.jpg" alt="سجل وملفات المرضى" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
+      <h3>سجل وملفات المرضى (الموانع الطبية)</h3>
+      <p>تنبيهات فورية للحالات الخاصة والأمراض المزمنة، وتاريخ الجلسات السابقة بدقة.</p>
+    </div>
+
+    <div class="screen-card">
+      <a href="screen3.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen3.jpg" alt="جدول المواعيد والكشوفات" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
+      <h3>جدول المواعيد وجلسات التأهيل (منع التضارب)</h3>
+      <p>تنظيم دقيق لمواعيد الجلسات وتوزيع أوقات الأخصائيين والغرف وتفادي أي تعارض.</p>
+    </div>
+
+    <!-- الشاشة 4: قارئ الـ QR والباركود بالمربعات السوداء القياسية المتداولة -->
+    <div class="screen-card">
+      <a href="#screens" class="img-wrapper" title="شاشة قارئ الباركود والـ QR">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 650" style="width:100%; height:auto; display:block; border-radius:12px;">
+          <rect width="650" height="650" fill="#070d18"/>
+          <rect x="50" y="30" width="550" height="590" rx="24" fill="#0e1726" stroke="#1a273e" stroke-width="2"/>
+          <path d="M78 68 L92 82 M92 68 L78 82" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="510" y="75" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="20" font-weight="900" text-anchor="end">Scan Punch Card &amp; Verify</text>
+          <text x="510" y="98" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="12" text-anchor="end">Scan encrypted QR from member card for instant verification</text>
+          
+          <rect x="530" y="55" width="46" height="46" rx="12" fill="#132337" stroke="#00d284" stroke-width="1.5"/>
+          <rect x="538" y="63" width="30" height="30" fill="#ffffff" rx="4"/>
+          <rect x="541" y="66" width="8" height="8" fill="#000000"/>
+          <rect x="557" y="66" width="8" height="8" fill="#000000"/>
+          <rect x="541" y="82" width="8" height="8" fill="#000000"/>
+          <rect x="552" y="77" width="5" height="5" fill="#000000"/>
+          <rect x="559" y="84" width="6" height="6" fill="#000000"/>
+
+          <rect x="185" y="130" width="280" height="280" rx="16" fill="rgba(0, 210, 132, 0.02)" stroke="#00d284" stroke-width="1.8" stroke-dasharray="6 6"/>
+          <path d="M165 155 V120 H200" fill="none" stroke="#00d284" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M485 155 V120 H450" fill="none" stroke="#00d284" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M165 385 V420 H200" fill="none" stroke="#00d284" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M485 385 V420 H450" fill="none" stroke="#00d284" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <defs>
+            <linearGradient id="laser" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00d284" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#00d284" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#00d284" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+
+          <line x1="165" y1="210" x2="485" y2="210" stroke="url(#laser)" stroke-width="3.5" filter="url(#glow)"/>
+
+          <g transform="translate(225, 170)">
+            <rect width="200" height="200" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+            <rect x="20" y="20" width="45" height="45" fill="#000000"/>
+            <rect x="26" y="26" width="33" height="33" fill="#ffffff"/>
+            <rect x="32" y="32" width="21" height="21" fill="#000000"/>
+
+            <rect x="135" y="20" width="45" height="45" fill="#000000"/>
+            <rect x="141" y="26" width="33" height="33" fill="#ffffff"/>
+            <rect x="147" y="32" width="21" height="21" fill="#000000"/>
+
+            <rect x="20" y="135" width="45" height="45" fill="#000000"/>
+            <rect x="26" y="141" width="33" height="33" fill="#ffffff"/>
+            <rect x="32" y="147" width="21" height="21" fill="#000000"/>
+
+            <rect x="75" y="25" width="10" height="10" fill="#000000"/>
+            <rect x="95" y="25" width="10" height="10" fill="#000000"/>
+            <rect x="115" y="25" width="10" height="10" fill="#000000"/>
+            <rect x="75" y="45" width="10" height="10" fill="#000000"/>
+            <rect x="105" y="45" width="10" height="10" fill="#000000"/>
+            <rect x="25" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="45" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="65" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="85" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="105" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="125" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="145" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="165" y="75" width="10" height="10" fill="#000000"/>
+            <rect x="75" y="95" width="10" height="10" fill="#000000"/>
+            <rect x="95" y="95" width="20" height="10" fill="#000000"/>
+            <rect x="125" y="95" width="10" height="10" fill="#000000"/>
+            <rect x="155" y="95" width="10" height="10" fill="#000000"/>
+            <rect x="75" y="115" width="10" height="10" fill="#000000"/>
+            <rect x="105" y="115" width="10" height="10" fill="#000000"/>
+            <rect x="135" y="115" width="20" height="10" fill="#000000"/>
+            <rect x="165" y="115" width="10" height="10" fill="#000000"/>
+            <rect x="75" y="135" width="20" height="10" fill="#000000"/>
+            <rect x="115" y="135" width="10" height="10" fill="#000000"/>
+            <rect x="135" y="135" width="10" height="10" fill="#000000"/>
+            <rect x="155" y="135" width="20" height="10" fill="#000000"/>
+            <rect x="75" y="155" width="10" height="10" fill="#000000"/>
+            <rect x="95" y="155" width="10" height="10" fill="#000000"/>
+            <rect x="125" y="155" width="20" height="10" fill="#000000"/>
+            <rect x="155" y="155" width="10" height="10" fill="#000000"/>
+            <rect x="85" y="170" width="10" height="10" fill="#000000"/>
+            <rect x="105" y="170" width="10" height="10" fill="#000000"/>
+            <rect x="135" y="170" width="10" height="10" fill="#000000"/>
+            <rect x="165" y="170" width="10" height="10" fill="#000000"/>
+          </g>
+
+          <text x="325" y="440" fill="#f8fafc" font-family="'Cairo', sans-serif" font-size="14" font-weight="700" text-anchor="middle">Point scanner at the punch card barcode / QR</text>
+          <text x="325" y="463" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="12" text-anchor="middle">وجّه القارئ نحو باركود أو رمز كارت الجلسات</text>
+          <text x="560" y="495" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="12" font-weight="600" text-anchor="end">:Or enter card code manually</text>
+          
+          <rect x="80" y="515" width="160" height="46" rx="12" fill="#00d284"/>
+          <text x="160" y="544" fill="#070d18" font-family="'Cairo', sans-serif" font-size="13" font-weight="900" text-anchor="middle">✓ Verify &amp; Deduct</text>
+          
+          <rect x="250" y="515" width="320" height="46" rx="12" fill="#070d18" stroke="#1a273e" stroke-width="1.5"/>
+          <text x="410" y="543" fill="#64748b" font-family="'Cairo', sans-serif" font-size="12" text-anchor="middle">...Scan QR / Barcode or paste code here</text>
+          
+          <text x="325" y="590" fill="#38bdf8" font-family="'Cairo', sans-serif" font-size="12" font-weight="700" text-anchor="middle">🔒 Session security active: Deduction requires verified token</text>
+        </svg>
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
+      <h3>قارئ الـ QR والباركود المشفر للحضور</h3>
+      <p>خصم جلسة المشترك عبر مسح كود QR والباركود الآمن من الهاتف، لمنع التلاعب وتوثيق الجلسة لحظياً.</p>
+    </div>
+
+    <div class="screen-card">
+      <a href="screen5.jpg" target="_blank" class="img-wrapper" title="اضغط لفتح الشاشة بحجم كامل">
+        <img src="screen5.jpg" alt="الخزينة واليومية المالية" loading="lazy" />
+        <span class="img-hint">🔍 انقر للتكبير</span>
+      </a>
+      <h3>الخزينة واليومية وسندات القبض</h3>
+      <p>توثيق المقبوضات وطرق الدفع (نقد، إنستاباي، فودافون كاش) وتقارير الإيرادات اللحظية للمركز.</p>
+    </div>
+
+    <!-- التحول الرقمي والمقارنة -->
+    <div class="sec-header">
+      <div class="sec-tag">التحول الرقمي</div>
+      <h2 class="sec-title">من الفوضى الورقية إلى السيطرة السحابية</h2>
+    </div>
+
+    <div class="compare-card bad">
+      <div class="compare-title">⚠️ الواقع التقليدي المرهق للمراكز</div>
+      <ul class="compare-list">
+        <li>✖ كروت ورقية ودفاتر جلسات مفقودة وتلاعب في الأرصدة.</li>
+        <li>✖ ارتباك الاستقبال وتداخل مواعيد الغرف والأخصائيين.</li>
+        <li>✖ سيرفرات محلية معقدة ومكلفة ومعرضة للأعطال والضياع.</li>
+        <li>✖ تسريب مالي وغياب الحساب الدقيق لاشتراكات الباقات.</li>
+      </ul>
+    </div>
+
+    <div class="compare-card good">
+      <div class="compare-title">☁ منظومة الرعاية من ريكوفا (Recova)</div>
+      <ul class="compare-list">
+        <li>✔ ملف تأهيلي سحابي موحد لكل مشترك متاح بلمح البصر.</li>
+        <li>✔ نظام QR وباركود ذكي لخصم الجلسات يمنع التلاعب نهائياً.</li>
+        <li>✔ منصة سحابية (SaaS) تعمل من أي متصفح وتحديثات فورية.</li>
+        <li>✔ تقفيل خزانة رقمي وإحكام مالي كامل لكل باقة وجلسة.</li>
+      </ul>
+    </div>
+
+    <!-- هرم الأمان والصلاحيات -->
+    <div class="sec-header">
+      <div class="sec-tag">الخصوصية والصلاحيات</div>
+      <h2 class="sec-title">هرم الأمان والصلاحيات الدقيقة بالمركز</h2>
+    </div>
+
+    <div class="role-item">
+      <div class="role-header">👨‍⚕️ إدارة المركز (تحكم ورقابة كاملة)</div>
+      <div class="role-desc">تقارير مالية، متابعة أداء الأخصائيين، ورؤية تفصيلية لكل العمليات.</div>
+    </div>
+    <div class="role-item">
+      <div class="role-header">📅 موظف الاستقبال (المواعيد والحجز)</div>
+      <div class="role-desc">تسجيل المشتركين، جدولة المواعيد، وتحصيل الرسوم دون الاطلاع على البيانات الطبية الحساسة.</div>
+    </div>
+    <div class="role-item">
+      <div class="role-header">🩺 الأخصائي والمعالج (ملفات الجلسات)</div>
+      <div class="role-desc">متابعة خطة التأهيل، تسجيل الملاحظات وتطور الحالة، ورصد موانع العلاج.</div>
+    </div>
+    <div class="role-item">
+      <div class="role-header">🛡️ التشفير السحابي والنسخ الاحتياطي</div>
+      <div class="role-desc">نسخ احتياطي لحظي وتشفير عالي الأمان لحماية بيانات المشتركين وإيرادات المركز.</div>
+    </div>
+
+    <!-- خطط الاشتراك والأسعار -->
+    <div class="sec-header">
+      <div class="sec-tag">خطط الاستثمار</div>
+      <h2 class="sec-title">خطط الاشتراك المعتمدة</h2>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-title">الاشتراك الشهري (للمركز)</div>
+      <div class="pricing-price">350 <span>ج.م / شهرياً</span></div>
+      <ul class="pricing-features">
+        <li>إدارة جدول الجلسات والمواعيد بالكامل</li>
+        <li>قارئ كود QR والباركود للخصم والحضور الآمن</li>
+        <li>ملف التنبيه بالموانع الطبية والتحذيرات</li>
+        <li>تقارير الخزينة والتحصيل اليومي</li>
+      </ul>
+      <a href="https://wa.me/201142954136?text=السلام%20عليكم،%20أريد%20الاشتراك%20الشهري%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-secondary dynamic-wa-link" target="_blank">طلب الباقة الشهرية</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="badge-pop">الخطة الأكثر طلباً</div>
+      <div class="pricing-title">الاشتراك السنوي (للمركز)</div>
+      <div class="pricing-price">3,500 <span>ج.م / سنوياً</span></div>
+      <ul class="pricing-features">
+        <li>جميع صلاحيات وميزات منظومة الرعاية والتأهيل</li>
+        <li>عدد غير محدود من المرضى والمشتركين والجلسات</li>
+        <li>نسخ احتياطي سحابي تلقائي لبيانات المركز</li>
+        <li>دعم فني وتدريب متواصل لفريق العمل</li>
+      </ul>
+      <a href="https://wa.me/201142954136?text=السلام%20عليكم،%20أريد%20الاشتراك%20السنوي%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-main dynamic-wa-link" target="_blank">طلب الباقة السنوية</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-title">الاشتراك السنوي (فرعين)</div>
+      <div class="pricing-price">6,000 <span>ج.م / سنوياً</span></div>
+      <ul class="pricing-features">
+        <li>ربط وتنسيق فرعين في لوحة تحكم موحدة</li>
+        <li>صلاحيات مخصصة لكل موظف وأخصائي بالفرعين</li>
+        <li>تقارير مالية مقارنة بين أداء الفرعين</li>
+        <li>أولوية فورية في المتابعة والدعم الفني</li>
+      </ul>
+      <a href="https://wa.me/201142954136?text=السلام%20عليكم،%20أريد%20اشتراك%20الفرعين%20في%20منظومة%20الرعاية%20والتأهيل" class="btn-secondary dynamic-wa-link" target="_blank">طلب باقة الفرعين</a>
+    </div>
+
+    <!-- الأسئلة الشائعة -->
+    <div class="sec-header">
+      <div class="sec-tag">إزالة الشكوك</div>
+      <h2 class="sec-title">الأسئلة الشائعة</h2>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">هل توجد أي مصاريف خفية أو رسوم تأسيس إضافية؟</div>
+      <div class="faq-a">إطلاقاً. لا توجد أي مصاريف تأسيس أو رسوم صيانة خفية. السعر المعلن يشمل كامل الاستضافة السحابية الآمنة، النسخ الاحتياطي التلقائي، والترقيات الدورية.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">هل يمكنني الترقية من خطة لأخرى في أي وقت؟</div>
+      <div class="faq-a">نعم بالتأكيد. يمكنك الترقية من الخطة الشهرية إلى السنوية أو إضافة فروع جديدة في أي وقت مع احتساب الأيام المتبقية من اشتراكك الحالي.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">ما هي وسائل الدفع وطرق تفعيل الحساب؟</div>
+      <div class="faq-a">نوفر وسائل دفع متعددة وسهلة تشمل: فودافون كاش، إنستاباي (InstaPay)، التحويلات البنكية المباشرة، والدفع الإلكتروني. يتم تفعيل الحساب وتزويدك ببيانات الدخول خلال أقل من 15 دقيقة.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">ماذا لو كان لدي مستشفى أو شبكة عيادات تتجاوز 3 فروع؟</div>
+      <div class="faq-a">نقدم حلول الشبكات الكبرى (Enterprise Edition) مع خادم سحابي خاص، تكامل API مع أجهزة المعامل والأشعة، وتدريب مخصص للموظفين. يسعدنا التواصل معك لتقديم عرض مالي وفني مفصل.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">هل بيانات المركز والمشتركين آمنة في السحابة؟</div>
+      <div class="faq-a">نعم، تعتمد منظومة Recova Cloud على تشفير متقدم ونسخ احتياطي مستمر يمنع أي فقدان أو تسريب للبيانات.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">هل النظام معقد على طاقم العمل والاستقبال؟</div>
+      <div class="faq-a">واجهة منظومة الرعاية صُممت لتكون بسيطة وسريعة جداً، ولا تتطلب أي خبرة تقنية سابقة، مع صلاحيات واضحة ومحددة لكل دور.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">ماذا لو احتجت إلى مساعدة أو تدريب؟</div>
+      <div class="faq-a">فريق الدعم الفني معك دائماً عبر واتساب والهاتف، مع توفير فيديوهات شرح وتحديثات تلقائية مستمرة مجاناً.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">كيف يمنع كود الـ QR تلاعب الجلسات والباقات؟</div>
+      <div class="faq-a">لكل مشترك رمز QR مشفر خاص به، يمسحه الاستقبال عند الحضور ليتم خصم الجلسة وتوثيق التوقيت دون أي مجال لتسجيل جلسات وهمية.</div>
+    </div>
+
+    <!-- كارت الحجز السفلي الرسمي -->
+    <div class="final-cta">
+      <h2>منظومة الرعاية والتأهيل: مستقبلك بيبدأ دلوقتي</h2>
+      <p>تواصل معنا الآن عبر واتساب للحصول على عرض حي للنظام وتجربة مجانية (7 أيام كاملة) مخصصة لمركزك.</p>
+      
+      <div class="phone-box phone-text">01142954136</div>
+      
+      <a href="https://wa.me/201142954136?text=السلام%20عليكم،%20أريد%20بدء%20التجربة%20المجانية%20(7%20أيام)%20لمنظومة%20الرعاية%20والتأهيل" class="btn-main dynamic-wa-link" target="_blank">
+        محادثة واتساب فورية 💬
+      </a>
+      <button class="btn-secondary" style="margin-bottom:0;" onclick="copyNumber()">نسخ الرقم 📋</button>
+    </div>
+
+  </div>
+
+  <!-- زر واتساب العائم -->
+  <a href="https://wa.me/201142954136" class="floating-wa dynamic-wa-link" target="_blank" title="تواصل عبر واتساب">
+    <svg viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+<script>
+  let activePhone = '01142954136';
+
+  // تفعيل أكورديون الأسئلة الشائعة
+  document.addEventListener('click', function(e) {
+    const q = e.target.closest('.faq-q');
+    if (q) {
+      const parent = q.parentElement;
+      parent.classList.toggle('active');
+    }
+  });
+
+  function copyNumber() {
+    navigator.clipboard.writeText(activePhone).then(() => {
+      alert('تم نسخ الرقم: ' + activePhone);
+    });
+  }
+</script>
+
+</body>
+</html>
