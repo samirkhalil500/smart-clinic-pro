@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منظومة الرعاية والتأهيل الطبي والاستشفاء | Recova Cloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070d18;
+      --card-bg: #0e1726;
+      --card-border: #1a273e;
+      --primary: #00d284;
+      --primary-hover: #00b370;
+      --accent: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --faq-bg: #0b1320;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 600px; margin: 0 auto; padding: 25px 18px 90px; }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+    .phone-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 210, 132, 0.15); border: 1px solid var(--primary); color: var(--primary); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-decoration: none; direction: ltr; }
+    .brand-logo { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 1.05rem; }
+    .brand-logo span.tag { background: #1e293b; color: #38bdf8; font-size: 0.65rem; padding: 2px 8px; border-radius: 6px; font-weight: 800; }
+    .hero-box { text-align: center; margin-bottom: 30px; }
+    .badge-pill { display: inline-block; background: rgba(56, 189, 248, 0.1); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 4px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px; }
+    .hero-title { font-size: 1.75rem; font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 10px; }
+    .hero-title span { color: var(--primary); display: block; }
+    .hero-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+    .btn-main { display: block; width: 100%; background: var(--primary); color: #070d18; text-align: center; padding: 13px; border-radius: 12px; font-weight: 900; font-size: 1.05rem; text-decoration: none; margin-bottom: 10px; box-shadow: 0 4px 20px rgba(0, 210, 132, 0.3); }
+    .btn-secondary { display: block; width: 100%; background: var(--card-bg); border: 1px solid var(--card-border); color: #cbd5e1; text-align: center; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 0.95rem; text-decoration: none; margin-bottom: 12px; }
+    .btn-recova { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: rgba(56, 189, 248, 0.1); border: 1px solid #38bdf8; color: #38bdf8; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 0.95rem; text-decoration: none; margin-bottom: 25px; transition: all 0.2s ease; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 35px; }
+    .stat-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 15px 12px; text-align: center; }
+    .stat-card .val { font-size: 1.4rem; font-weight: 900; color: var(--primary); }
+    .stat-card .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; }
+    .video-container { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 12px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .video-tag { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 0.8rem; font-weight: 800; margin-bottom: 10px; }
+    .video-title { font-size: 1.25rem; font-weight: 900; margin-bottom: 6px; }
+    .video-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; }
+    video { width: 100%; border-radius: 12px; display: block; background: #000; }
+    .video-features { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .vf-item { background: rgba(14, 23, 38, 0.7); border: 1px solid var(--card-border); padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .sec-header { text-align: center; margin: 40px 0 20px; }
+    .sec-tag { color: #38bdf8; font-size: 0.8rem; font-weight: 800; }
+    .sec-title { font-size: 1.45rem; font-weight: 900; margin-top: 4px; }
+    .sec-desc { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+    .screen-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 20px; }
+    .img-wrapper { position: relative; display: block; overflow: hidden; border-radius: 12px; border: 1px solid var(--card-border); margin-bottom: 12px; background: #000; }
+    .img-wrapper img { width: 100%; height: auto; display: block; }
+    .img-hint { position: absolute; bottom: 8px; left: 8px; background: rgba(7, 13, 24, 0.85); color: #38bdf8; font-size: 0.72rem; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3); font-weight: 700; }
+    .screen-card h3 { font-size: 1.05rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .screen-card p { font-size: 0.85rem; color: var(--text-muted); }
+    .compare-card { border-radius: 16px; padding: 18px; margin-bottom: 16px; }
+    .compare-card.bad { background: rgba(239, 68, 68, 0.04); border: 1px solid rgba(239, 68, 68, 0.2); }
+    .compare-card.good { background: rgba(0, 210, 132, 0.05); border: 1px solid rgba(0, 210, 132, 0.25); }
+    .compare-title { font-weight: 900; font-size: 1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .compare-card.bad .compare-title { color: #f87171; }
+    .compare-card.good .compare-title { color: var(--primary); }
+    .compare-list { list-style: none; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px; }
+    .compare-list li { display: flex; align-items: center; gap: 8px; }
+    .role-item { background: var(--card-bg); border: 1px solid var(--card-border); padding: 14px; border-radius: 14px; margin-bottom: 10px; }
+    .role-header { font-weight: 800; font-size: 0.95rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+    .role-desc { font-size: 0.8rem; color: var(--text-muted); }
+    .pricing-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 24px 20px; margin-bottom: 18px; text-align: center; position: relative; }
+    .pricing-card.featured { border: 2px solid var(--primary); box-shadow: 0 0 25px rgba(0, 210, 132, 0.15); }
+    .badge-pop { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #070d18; font-weight: 900; font-size: 0.75rem; padding: 2px 14px; border-radius: 20px; }
+    .pricing-title { font-size: 1.15rem; font-weight: 900; margin-bottom: 6px; }
+    .pricing-price { font-size: 2.1rem; font-weight: 900; color: var(--primary); margin-bottom: 14px; }
+    .pricing-price span { font-size: 0.85rem; color: var(--text); font-weight: 600; }
+    .pricing-features { list-style: none; text-align: right; font-size: 0.85rem; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .pricing-features li::before { content: "✔ "; color: var(--primary); font-weight: 900; }
+    .faq-item { background: var(--faq-bg); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+    .faq-q { padding: 14px 16px; font-weight: 800; font-size: 0.95rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-q::after { content: "+"; color: var(--primary); font-size: 1.3rem; transition: transform 0.2s ease; }
+    .faq-item.active .faq-q::after { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 16px; font-size: 0.85rem; color: var(--text-muted); }
+    .faq-item.active .faq-a { max-height: 250px; padding: 10px 16px 16px; border-top: 1px solid var(--card-border); }
+    .final-cta { background: #0b1424; border: 2px solid var(--primary); border-radius: 20px; padding: 24px 18px; text-align: center; margin-top: 40px; box-shadow: 0 10px 30px rgba(0, 210, 132, 0.2); }
+    .final-cta h2 { font-size: 1.35rem; font-weight: 900; margin-bottom: 8px; }
+    .final-cta p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
+    .phone-box { font-size: 1.55rem; font-weight: 900; color: var(--primary); direction: ltr; margin-bottom: 14px; }
+    .floating-wa { position: fixed; bottom: 20px; right: 20px; width: 54px; height: 54px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); z-index: 1000; text-decoration: none; }
+    .floating-wa svg { width: 30px; height: 30px; fill: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div class="brand-logo">
+        <span class="tag">RECOVA CLOUD</span>
+        <div>منظومة الرعاية والتأهيل</div>
+      </div>
+      <a href="https://wa.me/201550751026" class="phone-badge dynamic-wa-link" target="_blank">
+        <span class="phone-text">01550751026</span> 💬
+      </a>
+    </div>
 
+    <div class="hero-box">
+      <div class="badge-pill">● منظومة ريكوفا السحابية | EL-RE3AYA</div>
+      <h1 class="hero-title">
+        منظومة الرعاية والتأهيل
+        <span>الإدارة السحابية لمراكز الاستشفاء</span>
+      </h1>
+      <p class="hero-desc">
+        إشراف سحابي متكامل يمنح إدارة مراكز التأهيل الطبي والاستشفاء تحكماً مطلقاً، أماناً تاماً، وإلغاءً لفوضى الدفاتر والجلسات.
+      </p>
+      <a href="https://wa.me/201550751026?text=السلام%20عليكم،%20أريد%20تجربة%20منظومة%20الرعاية%20والتأهيل%20(7%20أيام)" class="btn-main dynamic-wa-link" target="_blank">
+        احصل على تجربة مجانية (7 أيام كاملة) 🎁
+      </a>
+      <a href="#screens" class="btn-secondary">معاينة شاشات النظام 📱</a>
+      <a href="https://el3eyada-clinic.web.app/care.html?ref=AT-7895A22X" class="btn-recova" target="_blank" rel="noopener noreferrer">
+        🌐 زيارة بوابة ريكوفا السحابية للعيادة
+      </a>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="val">100%</div><div class="lbl">سحابي بدون سيرفرات</div></div>
+      <div class="stat-card"><div class="val">0 ثانية</div><div class="lbl">تأخير في مزامنة QR والباركود</div></div>
+      <div class="stat-card"><div class="val">0 تعارض</div><div class="lbl">في المواعيد والغرف</div></div>
+      <div class="stat-card"><div class="val">24/7</div><div class="lbl">دعم فني وتحديثات</div></div>
+    </div>
+
+    <div class="video-container">
+      <div class="video-tag">▶ الفيديو التعريفي الرسمي</div>
+      <h2 class="video-title">شاهد منظومة الرعاية والتأهيل عملياً</h2>
+      <p class="video-sub">شرح مرئي يوضح إدارة مركز التأهيل والاستشفاء بالكامل.</p>
+      <video controls playsinline preload="metadata">
+        <source src="Video.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
+    </div>
+
+    <div class="sec-header" id="screens">
+      <div class="sec-tag">واجهات النظام الفعلية</div>
+      <h2 class="sec-title">استكشف الشاشات الرئيسية</h2>
+    </div>
+
+    <div class="screen-card">
+      <div class="img-wrapper"><img src="screen1.jpg" alt="الجلسات والباقات" loading="lazy" /></div>
+      <h3>منظومة تتبع ومتابعة الجلسات والباقات</h3>
+      <p>متابعة رصيد كل عميل، كروت المتابعة وتفعيل باقات الاستشفاء والتأهيل بضغطة زر.</p>
+    </div>
+
+    <div class="screen-card">
+      <div class="img-wrapper"><img src="screen2.jpg" alt="سجل المرضى" loading="lazy" /></div>
+      <h3>سجل وملفات المرضى (الموانع الطبية)</h3>
+      <p>تنبيهات فورية للحالات الخاصة والأمراض المزمنة، وتاريخ الجلسات السابقة بدقة.</p>
+    </div>
+
+    <div class="screen-card">
+      <div class="img-wrapper"><img src="screen3.jpg" alt="جدول المواعيد" loading="lazy" /></div>
+      <h3>جدول المواعيد وجلسات التأهيل (منع التضارب)</h3>
+      <p>تنظيم دقيق لمواعيد الجلسات وتوزيع أوقات الأخصائيين والغرف وتفادي أي تعارض.</p>
+    </div>
+
+    <div class="screen-card">
+      <div class="img-wrapper"><img src="screen5.jpg" alt="الخزينة واليومية المالية" loading="lazy" /></div>
+      <h3>الخزينة واليومية وسندات القبض</h3>
+      <p>توثيق المقبوضات وطرق الدفع وتقارير الإيرادات اللحظية للمركز.</p>
+    </div>
+
+    <div class="final-cta">
+      <h2>منظومة الرعاية والتأهيل: مستقبلك بيبدأ دلوقتي</h2>
+      <p>تواصل معنا الآن عبر واتساب للحصول على عرض حي للنظام وتجربة مجانية.</p>
+      <div class="phone-box phone-text">01550751026</div>
+      <a href="https://wa.me/201550751026?text=السلام%20عليكم،%20أريد%20بدء%20التجربة%20المجانية%20(7%20أيام)" class="btn-main dynamic-wa-link" target="_blank">
+        محادثة واتساب فورية 💬
+      </a>
+      <button class="btn-secondary" style="margin-bottom:0;" onclick="navigator.clipboard.writeText('01550751026').then(()=>alert('تم نسخ الرقم!'))">نسخ الرقم 📋</button>
+    </div>
+  </div>
+
+  <a href="https://wa.me/201550751026" class="floating-wa dynamic-wa-link" target="_blank" title="تواصل عبر واتساب">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
+
+  <script>
+    document.addEventListener('click', function(e) {
+      const q = e.target.closest('.faq-q');
+      if (q) { q.parentElement.classList.toggle('active'); }
+    });
+  </script>
+</body>
+</html>
